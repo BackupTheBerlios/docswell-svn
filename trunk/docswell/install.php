@@ -1,13 +1,13 @@
 <?php
 
 ######################################################################
-# DevCounter: Open Source Developer Counter
+# DocsWell: Documents Announcement & Retrieval System
 # ===================================================================
 #
 # Copyright (c) 2002 by
 #                Lutz Henckel (lutz.henckel@fokus.fhg.de)
 #
-# BerliOS DevCounter: http://devcounter.berlios.de
+# BerliOS DocsWell: http://docswell.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
 # Install system and check configuration
@@ -16,7 +16,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 or later of the GPL.
 #
-# $Id: install.php,v 1.2 2002/10/01 11:09:24 helix Exp $
+# $Id: install.php,v 1.3 2002/10/01 12:54:26 helix Exp $
 #
 ######################################################################  
 
@@ -73,8 +73,8 @@ switch ($action) {
 case "view_phpinfo":
 	require("./install/header.inc");
 	echo "<p>[ <a href=\"install.php\">Go back</a> ] [ <a href=\"install.php?action=check_php\">Next</a> ]<p>\n";
-    phpinfo();
-    exit;
+	phpinfo();
+	exit;
 	break;
 
 /* Check PHP */
@@ -109,11 +109,11 @@ case "check_phplib":
 	require("./install/check_phplib.php");
 	break;
 
-/* Check DevCounter Session */
+/* Check DocsWell Session */
 
 case 'check_session':
 	require("./include/prepend.php3");
-	require("./include/prepend.php3"); page_open(array('sess' => 'DevCounter_Session'));
+	require("./include/prepend.php3"); page_open(array('sess' => 'DocsWell_Session'));
 	require("./install/header.inc");
 	require("./install/check_session.php");
 	page_close();
