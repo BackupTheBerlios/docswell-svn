@@ -291,5 +291,7 @@ echo "<p><input TYPE=\"submit\" NAME=\"go\" VALUE=\"".$t->translate("Go")."\">";
 if (ereg("Gecko", "$HTTP_USER_AGENT")) {
 	echo "<p align=center><a href=\"javascript:addNetscapePanel();\"><img SRC=\"images/add-button.gif\" BORDER=0 height=45 width=100></a>\n";
 }
+echo "<p align=\"center\"><a href=\"http://developer.berlios.de\">
+<img src=\"http://developer.berlios.de/bslogot.php?group_id=99&type=1\" width=\"124\" height=\"32\" border=\"0\" hspace=\"3\" vspace=\"3\" alt=\"BerliOS Logo\"></a>\n";
 ?>
 <!-- end Language menu -->
