@@ -19,7 +19,28 @@ if ($db) {
 	$query = "CREATE DATABASE ".$dbname;
 	if (mysql_query($query, $db)) {
 		echo "<p><font color=\"green\">$query</font><p>\n";
-		$fcontents = file("./sql/dw.sql");
+		// Create database tables
+		$fcontents = file("./sql/tables.sql");
+		while (list ($line_num, $line) = each ($fcontents)) {
+			$line = trim($line);
+			if (!ereg("^#", $line) && !empty($line)) {
+				if (ereg(";$", $line)) {
+					$line = ereg_replace(";", "", $line);
+					$aquery[] = $line;
+					$query = join("", $aquery);
+					if (mysql_db_query($dbname, $query, $db)) {
+						echo "<p><font color=\"green\">$query</font>\n";
+					} else {
+						echo "<p><font color=\"red\">Database error: ".mysql_error()."</font>\n";
+					}
+					$aquery = array();
+				} else {
+					$aquery[] = $line;
+				}
+			}
+		}
+		// Set database defaults
+		$fcontents = file("./sql/defaults.sql");
 		while (list ($line_num, $line) = each ($fcontents)) {
 			$line = trim($line);
 			if (!ereg("^#", $line) && !empty($line)) {

@@ -4,30 +4,32 @@
 	$version = phpversion();
 	$major = $version[0];
 	$pl = strstr($version, "pl");
-	if ($pl) {
-    	$version = substr_replace($version, '', -strlen($pl));
-	}
+	if ($pl)
+    		$version = substr_replace($version, '', -strlen($pl));
 	if ($major == 3) {
-    	$bits = explode('.', $version);
-    	$minor = $bits[count($bits) - 1];
-    	$class = 'release';
+    		$bits = explode('.', $version);
+    		$minor = $bits[count($bits) - 1];
+    		$release = $bits[count($bits) - 2];
+    		$class = 'release';
 	} else {
-    	if (strspn($version, '0123456789.') == strlen($version)) {
-        	$bits = explode('.', $version);
-        	$minor = $bits[count($bits) - 1];
-        	$class = 'release';
-    	} else {
-        	$tail = substr($version, -4);
-        	if (($tail == '-dev') || ($tail == '-cvs')) {
-            	$bits = explode('.', $version);
-            	$minor = $bits[count($bits) - 1];
-            	$minor = substr($minor, 0, strlen($minor) - 4);
-            	$class = substr($tail, 1);
-        	} else {
-            	$minor = substr($version, 3);
-            	$class = 'beta';
-        	}
-    	}
+    		if (strspn($version, '0123456789.') == strlen($version)) {
+        		$bits = explode('.', $version);
+        		$minor = $bits[count($bits) - 1];
+    			$release = $bits[count($bits) - 2];
+        		$class = 'release';
+    		} else {
+        		$tail = substr($version, -4);
+        		if (($tail == '-dev') || ($tail == '-cvs')) {
+         		   	$bits = explode('.', $version);
+        		    	$minor = $bits[count($bits) - 1];
+    				$release = $bits[count($bits) - 2];
+        		    	$minor = substr($minor, 0, strlen($minor) - 4);
+        		    	$class = substr($tail, 1);
+        		} else {
+        		    	$minor = substr($version, 3);
+         		   	$class = 'beta';
+        		}
+    		}
 	}
 
 	/* PHP module capabilities */
@@ -41,23 +43,23 @@
 	<p><b>PHP Version</b>
 	<ul>
     	<li>PHP Version: <?php echo "$version$pl"; ?></li>
-    	<li>PHP Major Version: <?php echo $major; ?>, PHP Minor Version: <?php echo "$minor$pl"; ?>, PHP Version Classification: <?php echo $class; ?></li>
+    	<li>PHP Major Version: <?php echo $major; ?>, PHP Release: <?php echo "$release$pl"; ?>, PHP Minor Version: <?php echo "$minor$pl"; ?>, PHP Version Classification: <?php echo $class; ?></li>
     	<?php if ($major == 3) {
         	if ($minor < 16): ?>
             	<li><B><font color="red">Your PHP3 version is older than 3.0.16. You should upgrade to 3.0.16 (or later).</font></B></li>
         	<?php else: ?>
-            	<li><B><font color="green">Your PHP3 version is recent. You should not have any problems with DocsWell modules.</font></B></li>
+            	<li><B><font color="green">Your PHP3 version is recent. You should not have any problems with <?php echo $sys_name;?> modules.</font></B></li>
         	<?php endif;
     	} elseif ($major == 4) {
         	if ($class == 'beta') { $some_no=1; ?>
             	<li><B><font color="red">You are running a beta or release candidate of PHP4. You need to upgrade to a release version, at least 4.0.3.</font></B></li>
-        	<?php } elseif ($minor < 3) { $some_no=1; ?>
+        	<?php } elseif ($release == 0 && $minor < 3) { $some_no=1; ?>
             	<li><B><font color="red">You are running a version of PHP4 older than 4.0.3. You need to upgrade to at least 4.0.3.</font></B></li>
         	<?php } else { ?>
             	<li><B><font color="green">You are running a supported release of PHP4. Enjoy the ride!</font></B></li>
         	<?php } ?>
     	<?php } else { ?>
-        	<li><font color="orange">Wow, a mystical PHP from the future. Maybe yo've got to look up if a more modern DocsWell version exists!</font></li>
+        	<li><font color="orange">Wow, a mystical PHP from the future. Maybe yo've got to look up if a more modern <?php echo $sys_name;?> version exists!</font></li>
     	<?php } ?>
 	</ul>
 
@@ -78,5 +80,5 @@
     	<li>MySQL Support: <?php status($mysql) ?></li>
     	<li>PostgreSQL Support: <?php status($pgsql) ?></li>
 	</ul>
-	<p>[ <a href="install.php">Go back</a> ] [ <a href="install.php?action=check_phplib">Next</a> ]
+	<p>[ <a href="install.php">Go back</a> ] [ <a href="install.php?action=set_phplib">Next</a> ]
 	<p>
