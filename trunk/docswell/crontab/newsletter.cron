@@ -1,2 +1,2 @@
-59 23  *  *  * /usr/bin/wget http://docswell.berlios.de/nlsend.php?period=daily -a /home/groups/docswell/htdocs/crontab/nldaily.log -O /home/groups/docswell/htdocs/crontab/nldaily.output
-59 23  *  *  5 /usr/bin/wget http://docswell.berlios.de/nlsend.php?period=weekly -a /home/groups/docswell/htdocs/crontab/nlweekly.log -O /home/groups/docswell/htdocs/crontab/nlweekly.output
+59 23  *  *  * /usr/bin/wget http://localhost/nlsend.php?period=daily -a /home/groups/docswell/htdocs/crontab/nldaily.log -O /home/groups/docswell/htdocs/crontab/nldaily.output
+59 23  *  *  5 /usr/bin/wget http://localhost/nlsend.php?period=weekly -a /home/groups/docswell/htdocs/crontab/nlweekly.log -O /home/groups/docswell/htdocs/crontab/nlweekly.output
