@@ -109,7 +109,7 @@ function docfull($query) {
   $db->query($query);
   $db->next_record();
   $bx->box_begin();
-  $bx->box_title($db->f("TITEL"));
+  $bx->box_title(stripslashes($db->f("TITEL")));
   $bx->box_body_begin();
   $timestamp = timestr(mktimestampdw($db->f("AENDERUNGSDATUM")));
   $timestampER = timestr(mktimestampdw($db->f("ERSTELLUNGSDATUM")));
@@ -189,7 +189,7 @@ function docfull($query) {
       }
       echo "<img src=\"images_docs/".$bild."\" border=\"0\" width=\"$width\" height=\"$height\" align=\"right\" hspace=\"5\" vspace=\"5\">";
   } else echo "<p>";
-  echo $db->f("BESCHREIBUNG")."	\n";
+  echo stripslashes($db->f("BESCHREIBUNG"))."	\n";
   echo "<table border=0 cellspacing=1 cellpadding=3 width=100% bgcolor=".$GLOBALS["th_box_body_bgcolor"].">\n";
   echo "<tr><td colspan=2>&nbsp;</td></tr>";
 
@@ -284,8 +284,9 @@ function docfull($query) {
 				AND a.ID!=".$db->f("ID")." 
 				AND a.SPRACHE=b.ID 
 				AND a.TYP=c.ID 
-				AND a.STATUS != 'D' ";
-    	$Sql .= " ORDER BY a.AENDERUNGSDATUM DESC ";
+				AND a.STATUS != 'D'";
+    	$Sql .= " ORDER BY a.AENDERUNGSDATUM DESC";
+	$Sql .= " LIMIT 20";
     	//echo $Sql;
     	$dbaAut->query($Sql);
     	$i = 0;
@@ -502,7 +503,7 @@ function docd() {
   $bx->box_title_begin();
   echo "<table border=0 cellspacing=0 cellpadding=0 width=100%>\n";
   echo "<tr valign=bottom>";
-  echo "<td width=30%><b><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("id")))."\">".$db->f("titel")."</a></b></td>\n";
+  echo "<td width=30%><b><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("id")))."\">".stripslashes($db->f("titel"))."</a></b></td>\n";
   echo "<td width=70% align=right>\n";
 
   echo "&nbsp;&nbsp;<b><a href=\"".$sess->url("docbytyp.php").$sess->add_query(array("typ" => $db->f("DocType")))."\">".$t->translate($db->f("TypName"))."</a></b>\n";
@@ -576,7 +577,7 @@ function docd() {
 	echo "<img src=\"images_docs/".$bild."\" border=\"0\" width=\"$width\" height=\"$height\" align=\"right\" hspace=5>";
     } else
 	echo "<p>";
-  echo $db->f("beschreibung")."\n";
+  echo stripslashes($db->f("beschreibung"))."\n";
   $bx->box_body_end();
 }
 
@@ -586,7 +587,7 @@ function docd() {
 ## Display marginal recent docs by each type
 
 function doctyp() {
-  global $t, $bx, $db, $sess;
+  global $t, $bx, $db, $sess, $config_show_docspertype;
 
   $db_typ = new DB_DocsWell;
   $db_typ->query("SELECT ID,NAME FROM TYPDEF ORDER BY NAME ASC");
@@ -600,7 +601,7 @@ function doctyp() {
       $bx->box_title_end();
       $bx->box_body_begin();
 
-      $db->query("SELECT ID,TITEL, AENDERUNGSDATUM FROM DOKUMENT WHERE TYP='$typid' AND STATUS='A' ORDER BY AENDERUNGSDATUM DESC, ID DESC LIMIT 10");
+      $db->query("SELECT ID,TITEL, AENDERUNGSDATUM FROM DOKUMENT WHERE TYP='$typid' AND STATUS='A' ORDER BY AENDERUNGSDATUM DESC, ID DESC LIMIT $config_show_docspertype");
       while($db->next_record()) {
         echo "<div class=newsind>&#149;&nbsp;";
         echo "<a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("ID")))."\">".$db->f("TITEL")."</a> [".strftime("%a, %e. %b, %H:%M %Z", mktimestampdw($db->f("AENDERUNGSDATUM")))."]</div>\n";
