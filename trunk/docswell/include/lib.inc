@@ -334,10 +334,10 @@ function doccat($query,$title,$iter, $what) {
     $parent = $dbt->f("PARENT_ID");
     $pfad = array();
     while ($parent != 1) {
-	array_unshift ($pfad,$dbt->f("NAME"));
-	$dbt->query("SELECT * FROM KATEGORIE WHERE ID=$parent");
-	$dbt->next_record();
-	$parent = $dbt->f("PARENT_ID");
+		array_unshift ($pfad,$dbt->f("NAME"));
+		$dbt->query("SELECT * FROM KATEGORIE WHERE ID=$parent");
+		$dbt->next_record();
+		$parent = $dbt->f("PARENT_ID");
     }
     array_unshift ($pfad,$dbt->f("NAME"));
     $counter =0;
@@ -345,12 +345,12 @@ function doccat($query,$title,$iter, $what) {
     foreach ($pfad as $onestep) {
       $counter++;
       if ($counter == $anz) {
- 	$dbKat->query("SELECT * FROM KATEGORIE WHERE NAME='$onestep'");
-	$dbKat->next_record();
-	$cat_path .= " :: <a href=\"".$sess->url("docbycat.php").$sess->add_query(array("category" => $db->f("KATID")))."\">".$t->translate($onestep)."</a>";
+		$dbKat->query("SELECT * FROM KATEGORIE WHERE NAME='$onestep'");
+		$dbKat->next_record();
+		$cat_path .= " :: <a href=\"".$sess->url("docbycat.php").$sess->add_query(array("category" => $db->f("KATID")))."\">".$t->translate($onestep)."</a>";
       } else 
-	$cat_path .= " :: ".$t->translate($onestep)." ";
-    }
+		$cat_path .= " :: ".$t->translate($onestep)." ";
+	}
     $cat_path = substr ($cat_path,3);   	  
     
     
@@ -596,7 +596,7 @@ function doctyp() {
       $typid = $db_typ->f("ID");
       $bx->box_begin();
       $bx->box_title_begin();
-      echo "<center><b><a href=\"".$sess->url("docbytyp.php").$sess->add_query(array("typ" => "$typid"))."\">".$t->translate($db_typ->f("NAME")."s")."</a></b></center>";
+      echo "<center><b><a href=\"".$sess->url("docbytyp.php").$sess->add_query(array("typ" => "$typid"))."\">".$t->translate($db_typ->f("NAME"))."</a></b></center>";
       $bx->box_title_end();
       $bx->box_body_begin();
 
