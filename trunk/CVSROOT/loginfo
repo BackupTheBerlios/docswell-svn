@@ -24,4 +24,6 @@
 #DEFAULT (echo ""; id; echo %s; date; cat) >> $CVSROOT/CVSROOT/commitlog
 # or
 #DEFAULT (echo ""; id; echo %{sVv}; date; cat) >> $CVSROOT/CVSROOT/commitlog
-ALL /usr/local/bin/log.pl %s -f $CVSROOT/CVSROOT/commitlog -m docswell-devel@lists.berlios.de
+#ALL /usr/local/bin/log.pl %s -f $CVSROOT/CVSROOT/commitlog -m docswell-devel@lists.berlios.de
+#ALL /usr/local/bin/syncmail.pl %{sVv} docswell-devel@lists.berlios.de
+ALL /usr/local/bin/syncmail %{sVv} docswell-devel@lists.berlios.de
