@@ -287,9 +287,9 @@ if ($perm->have_perm("user_pending")) {
 			<?php if ($error_ar["category"]): echo "<BR><font color=\"#AA0000\">".
                                 $error_ar["category"]."</font>"; endif; ?>		
 			</TD>
-			<TD valign="top"><a href="categories.php?mode=2"><font size="2"><?php echo $t->translate("Select category") ?></font></a>
+			<TD valign="top"><a href="categories.php?mode=2"><font class="small"><?php echo $t->translate("Select category") ?></font></a>
 			   <?php if ($perm->have_perm("admin")) { ?>
-                           <br><a href="<?php $sess->purl("admcat.php") ?>"><font size="2"><?php echo $t->translate("Insert new category") ?></font></a>
+                           <br><a href="<?php $sess->purl("admcat.php") ?>"><font class="small"><?php echo $t->translate("Insert new category") ?></font></a>
 			<?php } ?></TD>
                     </TR>
                     <TR>
@@ -309,7 +309,7 @@ if ($perm->have_perm("user_pending")) {
 			</TD>
 			
 			<TD><?php if ($perm->have_perm("editor") || $perm->have_perm("admin")) { ?>
-                        	<a href="<?php $sess->purl("insert_sprache.php") ?>"><font size="2"><?php echo $t->translate("Insert new language") ?></font></a>
+                        	<a href="<?php $sess->purl("insert_sprache.php") ?>"><font class="small"><?php echo $t->translate("Insert new language") ?></font></a>
                         <?php } ?></TD>
                       </TR>
                       <TR>
@@ -330,7 +330,7 @@ if ($perm->have_perm("user_pending")) {
                           </select>
 			</TD>
 			<TD><?php if ($perm->have_perm("editor") || $perm->have_perm("admin")) { ?>
-                           <a href="<?php $sess->purl("insert_typ.php") ?>"><font size="2"><?php echo $t->translate("Insert new type") ?></font></a>
+                           <a href="<?php $sess->purl("insert_typ.php") ?>"><font class="small"><?php echo $t->translate("Insert new type") ?></font></a>
 			<?php } ?></TD>
                       </TR>
                       <TR>
@@ -358,7 +358,7 @@ if ($perm->have_perm("user_pending")) {
                                 $error_ar["format"]."</font>"; endif; ?>
 			</TD>
 			<TD><?php if ($perm->have_perm("editor") || $perm->have_perm("admin")) { ?>
-                           <a href="<?php $sess->purl("insert_format.php") ?>"><font size="2"><?php echo $t->translate("Insert new format") ?></font></a>
+                           <a href="<?php $sess->purl("insert_format.php") ?>"><font class="small"><?php echo $t->translate("Insert new format") ?></font></a>
 			<?php } ?></TD>
                       </TR>
                     <TR>
@@ -385,7 +385,7 @@ if ($perm->have_perm("user_pending")) {
                   </select>
 			</TD>
 			<TD>
-                           <a href="<?php $sess->purl("insert_autor.php") ?>"><font size="2"><?php echo $t->translate("Insert new author") ?></font></a>
+                           <a href="<?php $sess->purl("insert_autor.php") ?>"><font class="small"><?php echo $t->translate("Insert new author") ?></font></a>
 			</TD>
                       </TR>
                     <TR>
