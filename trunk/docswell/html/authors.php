@@ -5,7 +5,7 @@
 # ===================================================================
 #
 # Copyright (c) 2001 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de) and
+#                Lutz Henckel (lutz.henckel@fokus.fraunhofer.de) and
 #                Gregorio Robles (grex@scouts-es.org)
 #
 # BerliOS DocsWell: http://sourcewell.berlios.de
@@ -28,7 +28,7 @@ require("./include/header.inc");
 <P><H2>About the authors:</H2>
 
 <UL>
-<LI>Lutz Henckel &lt;<A HREF="mailto:lutz.henckel@fokus.gmd.de">lutz.henckel@fokus.gmd.de</A>&gt;
+<LI>Lutz Henckel &lt;<A HREF="mailto:lutz.henckel@fokus.fraunhofer.de">lutz.henckel@fokus.fraunhofer.de</A>&gt;
 <BR>Lutz Henckel is the project manager of the BerliOS team. He is known for his
 earlier home page "Woven Goods for Linux", which has evolved to what BerliOS is today.
 
@@ -46,7 +46,7 @@ thesis at the Technical University of Berlin in contact with BerliOS.
 <BR>Florian Dorrer is a student at Technical University of Berlin
 </UL>
 
-<P>BerliOS DocsWell is part of the BerliOS project at GMD FOKUS. Please, have
+<P>BerliOS DocsWell is part of the BerliOS project at FOKUS. Please, have
 a look at <A HREF="http://www.berlios.de">http://www.berlios.de</A> for further information.
 
 <p>&nbsp;
