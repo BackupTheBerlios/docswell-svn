@@ -46,6 +46,8 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 <!-- content -->
 <?php
 
+$search = stripslashes($search);
+
       // When there's a search for a blank line, we look for "xxxxxxxx"
 if ((!isset($search) || $search=="") && (!$format || $format==-1) && (!$Sprache || $Sprache==-1) && (!$typ || $typ==-1) && (!$kategorie || $kategorie==-1) && (!$Autor || $Autor==-1)) {
   $search = "xxxxxxxx";
@@ -76,11 +78,11 @@ $flag=0;
 
  if($search && $search != "") {
    if ($flag != 0) {
-      $Cquery .= " AND (ucase(a.TITEL) like ucase('%$search%') OR ucase(a.BESCHREIBUNG) like ucase('%$search%')) ";
+      $Cquery .= " AND (ucase(a.TITEL) like ucase('%".addslashes($search)."%') OR ucase(a.BESCHREIBUNG) like ucase('%".addslashes($search)."%')) ";
    } else {
-      $Cquery .= " where a.STATUS!='D' AND (ucase(a.TITEL) like ucase('%$search%') OR ucase(a.BESCHREIBUNG) like ucase('%$search%')) ";
+      $Cquery .= " where a.STATUS!='D' AND (ucase(a.TITEL) like ucase('%".addslashes($search)."%') OR ucase(a.BESCHREIBUNG) like ucase('%".addslashes($search)."%')) ";
    }
-   $where .= " AND (ucase(a.TITEL) like ucase('%$search%') OR ucase(a.BESCHREIBUNG) like ucase('%$search%')) ";
+   $where .= " AND (ucase(a.TITEL) like ucase('%".addslashes($search)."%') OR ucase(a.BESCHREIBUNG) like ucase('%".addslashes($search)."%')) ";
    $flag=1;
  }
 
@@ -130,8 +132,6 @@ $flag=0;
 //echo "<br><br><br>$Cquery\n<br><br><br>";
 
 $db->query($Cquery." AND z.id=a.KATEGORIE ");
-//echo $Cquery;
-//echo $Cquery;
 $db->next_record();
 $cnt = $db->f("COUNT(*)");
 //echo $cnt."<<<<<<<<<<<<<<<<<<<<<<<";
@@ -178,8 +178,7 @@ if ($cnt == 0) {
     $bs->box_strip($sort);
 
   $query="SELECT $columns FROM $tables WHERE $where ORDER BY $order LIMIT $limit";
-//  echo "<br><br><br>$query\n<br><br><br>";
-  //echo $query;
+//echo "<br><br><br>$query\n<br><br><br>";
   docdat($query);
 
 }

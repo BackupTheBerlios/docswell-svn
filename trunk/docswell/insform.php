@@ -45,11 +45,11 @@ if ($perm->have_perm("user_pending")) {
 	if ($status == 'insert_new') {
 		// Eingaben ueberpruefen
 	        if (! $titel) {
-			$error_ar["titel"] = $t->translate("Error").": ".$t->translate("Please enter the titel of the document")." (".__LINE__.")";
+			$error_ar["titel"] = $t->translate("Error").": ".$t->translate("Please enter the title of the document")." (".__LINE__.")";
 			// echo $error_ar["titel"];
         	}
         	if (($titel) && (strlen($titel) < 2)) {
-                	$error_ar["titel"] = $t->translate("Error").": ".$t->translate("The titel is to short")." (".__LINE__.")";
+                	$error_ar["titel"] = $t->translate("Error").": ".$t->translate("The title is to short")." (".__LINE__.")";
 			// echo $error_ar["titel"];
 		}        
 
@@ -391,7 +391,7 @@ if ($perm->have_perm("user_pending")) {
                     <TR>
                         <TD align="right" valign="top"><B><?php echo $t->translate("Title") ?>:</B></TD>
                         <TD colspan="2">
-                          <input type="text" name="titel" size="30" value="<?php echo stripslashes($titel) ?>">
+                          <input type="text" name="titel" size="30" value="<?php echo htmlentities(stripslashes($titel), ENT_COMPAT) ?>">
 			  <?php if ($error_ar["titel"]): echo "<BR><font color=\"#AA0000\">".$error_ar["titel"]."
 							       </font>"; endif; ?>
                         </TD>
@@ -508,14 +508,14 @@ if ($perm->have_perm("user_pending")) {
                     <TR>
                         <TD align="right"><B><?php echo $t->translate("Title") ?>:</B></TD>
                         <TD>
-				<?php echo $titel; ?><input type="hidden" name="titel" value="<?php echo stripslashes($titel); ?>">
+				<?php echo htmlentities(stripslashes($titel),ENT_COMPAT); ?><input type="hidden" name="titel" value="<?php echo htmlentities(stripslashes($titel),ENT_COMPAT); ?>">
                         </TD>
                    </TR>
                    <TR>
                         <TD align="right" valign="top"><B><?php echo $t->translate("Description") ?>:</B></TD>
                         <TD>
-                                <?php echo urldecode($beschreibung); ?>
-								<input type="hidden" name="beschreibung" value="<?php echo urlencode($beschreibung); ?>">
+                                <?php echo htmlentities(stripslashes($beschreibung),ENT_COMPAT); ?>
+								<input type="hidden" name="beschreibung" value="<?php echo htmlentities(stripslashes($beschreibung),ENT_COMPAT); ?>">
                         </TD>
                    </TR>
                    <TR>

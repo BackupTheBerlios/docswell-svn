@@ -233,13 +233,13 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin")) || ($perm->have_
                     <TR>
                         <TD align="right" valign="top"><B><?php echo $t->translate("Title") ?>:</B></TD>
                         <TD colspan="2">
-				<?php echo stripslashes($titel); ?><input type="hidden" name="titel" value="<?php echo urlencode($titel); ?>">
+				<?php echo stripslashes($titel); ?><input type="hidden" name="titel" value="<?php echo htmlentities(stripslashes($titel),ENT_COMPAT); ?>">
                         </TD>
                    </TR>
                    <TR>
                         <TD align="right" valign="top"><B><?php echo $t->translate("Description") ?>:</B></TD>
                         <TD colspan="2">
-				<?php echo stripslashes($beschreibung); ?><input type="hidden" name="beschreibung" value="<?php echo urlencode($beschreibung); ?>">
+				<?php echo stripslashes($beschreibung); ?><input type="hidden" name="beschreibung" value="<?php echo htmlentities(stripslashes($beschreibung),ENT_COMPAT); ?>">
                         </TD>
                    </TR>
                    <TR>
@@ -538,7 +538,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin")) || ($perm->have_
 	                    <TR>
 	                        <TD align="right" valign="top"><B><?php echo $t->translate("Title") ?>:</B></TD>
 	                        <TD colspan="2">
-	                          <input type="text" name="titel" size="30" value="<?php if ($titel) { $eintrag[TITEL] = $titel; } echo stripslashes($eintrag[TITEL]) ?>">
+	                          <input type="text" name="titel" size="30" value="<?php if ($titel) { $eintrag[TITEL] = $titel; } echo htmlentities(stripslashes($eintrag[TITEL]),ENT_COMPAT) ?>">
 				  <?php if ($error_ar["titel"]): echo "<BR><font color=\"#AA0000\">".$error_ar["titel"]."
 								       </font>"; endif; ?>
 	                        </TD>
@@ -662,8 +662,8 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin")) || ($perm->have_
 	   list ($atag, $amonat, $ajahr) = split ('[/.-]', $aenderungsdatum);
    	   list ($astunde, $aminute, $asekunde) = split ('[/:.-]', $aenderungszeit);
 	   $aenderungsdatum = "$ajahr-$amonat-$atag $astunde:$aminute:$asekunde";
-	   $titel = urldecode($titel);
-	   $beschreibung = urldecode($beschreibung);
+	   //$titel = urldecode($titel);
+	   //$beschreibung = urldecode($beschreibung);
 
 	   $query = "SELECT max(ID) AS maxid FROM PENDING";
 	   $db->query ($query);

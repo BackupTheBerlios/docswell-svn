@@ -230,15 +230,15 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
                         </TD>
                    </TR>
                     <TR>
-                        <TD align="right" valign="top"><B><?php echo $t->translate("Titel") ?>:</B></TD>
+                        <TD align="right" valign="top"><B><?php echo $t->translate("Title") ?>:</B></TD>
                         <TD colspan="2">
-				<?php echo stripslashes($titel); ?><input type="hidden" name="titel" value="<?php echo urlencode($titel); ?>">
+				<?php echo stripslashes($titel); ?><input type="hidden" name="titel" value="<?php echo htmlentities(stripslashes($titel),ENT_COMPAT); ?>">
                         </TD>
                    </TR>
                    <TR>
                         <TD align="right" valign="top"><B><?php echo $t->translate("Description") ?>:</B></TD>
                         <TD colspan="2">
-				<?php echo stripslashes($beschreibung); ?><input type="hidden" name="beschreibung" value="<?php echo urlencode($beschreibung); ?>">
+				<?php echo stripslashes($beschreibung); ?><input type="hidden" name="beschreibung" value="<?php echo htmlentities(stripslashes($beschreibung),ENT_COMPAT); ?>">
                         </TD>
                    </TR>
                    <TR>
@@ -552,9 +552,9 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 				</TD>
 	                      </TR>
 	                    <TR>
-	                        <TD align="right"><B><?php echo $t->translate("Titel") ?>:</B></TD>
+	                        <TD align="right"><B><?php echo $t->translate("Title") ?>:</B></TD>
 	                        <TD colspan="2">
-	                          <input type="text" name="titel" size="30" value="<?php if ($titel) { $eintrag[TITEL] = $titel; } echo $eintrag[TITEL] ?>">
+	                          <input type="text" name="titel" size="30" value="<?php if ($titel) { $eintrag[TITEL] = $titel; } echo htmlentities(stripslashes($eintrag[TITEL]),ENT_COMPAT) ?>">
 				  <?php if ($error_ar["titel"]): echo "<BR><font color=\"#AA0000\">".$error_ar["titel"]."
 								       </font>"; endif; ?>
 	                        </TD>
@@ -562,7 +562,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 	                    <TR>
 	                        <TD align=right width="25%"><B><?php echo $t->translate("Description") ?>:</B></TD>
 	                        <TD width="75%" colspan="2">
-	                          <textarea name="beschreibung" wrap="PHYSICAL" cols="50" rows="10"><?php if ($beschreibung) { $eintrag[BESCHREIBUNG] = $beschreibung; } echo stripslashes(urldecode($eintrag[BESCHREIBUNG])) ?></textarea>
+	                          <textarea name="beschreibung" wrap="PHYSICAL" cols="50" rows="10"><?php if ($beschreibung) { $eintrag[BESCHREIBUNG] = $beschreibung; } echo stripslashes($eintrag[BESCHREIBUNG]) ?></textarea>
 	                          <?php if ($error_ar["beschreibung"]): echo "<BR><font color=\"#AA0000\"> ".$error_ar["beschreibung"]."</font>"; endif; ?>
 	                        </TD>
 	                      </TR>
@@ -685,8 +685,8 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 	   list ($atag, $amonat, $ajahr) = split ('[/.-]', $aenderungsdatum);
    	   list ($astunde, $aminute, $asekunde) = split ('[/:.-]', $aenderungszeit);
 	   $aenderungsdatum = "$ajahr-$amonat-$atag $astunde:$aminute:$asekunde";
-	   $titel = urldecode($titel);
-	   $beschreibung = urldecode($beschreibung);
+	   //$titel = urldecode($titel);
+	   //$beschreibung = urldecode($beschreibung);
 
    	   $query = "SELECT max(ID) AS maxid FROM DOKUMENT";
 	   $db->query ($query);
@@ -737,7 +737,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 // # Anzeige der ersten Eingabemaske
 // ##########################################
         if (! $status) { ?>
-	<form action="#" method="post">
+	<form action="<?php $sess->purl("edit_new.php") ?>" method="post">
 		<input type="hidden" name="status" value="edit_new">
 		<TABLE cellSpacing=1 cellPadding=3 width="100%" bgColor=#ffffff border=0>
                     <TR>
@@ -746,10 +746,12 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
                           <select name="ID" size=20">
                     <?php //############################# Alle neuen Dokumenteneinträge holen ##################################
                     		$db->query("SELECT *, DATE_FORMAT(AENDERUNGSDATUM,'%d.%m.%Y') AS fdate FROM PENDING WHERE STATUS='N' ORDER BY AENDERUNGSDATUM DESC");
-			  
+				$i = 0;
 				  while ($db->next_record()) {	
                             	  	echo "<option value=\"".$db->f("ID")."\"";
-					echo ">".$db->f("fdate")." - ".$db->f("TITEL") ."</option>\n";                            	  
+					if ($i == 0) echo " selected";
+					echo ">".$db->f("fdate")." - ".$db->f("TITEL") ."</option>\n";
+					$i++;
                             	  }
                      ?>
                           </select>

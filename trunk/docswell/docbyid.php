@@ -39,7 +39,7 @@ $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$
 
 $columns = "*";
 $tables = "DOKUMENT";
-$where = "ID='$id' AND STATUS !='D' ";
+$where = "ID='$id'";
 $query = "SELECT $columns FROM $tables WHERE $where";
 $db->query($query);
 
@@ -60,10 +60,10 @@ if ($db->next_record()) {
   } else {
   switch($db_status) {
       case "M":            
-   $be->box_full($t->translate("Error"), $t->translate("Document")." <b>".$db->f("TITEL")."</b> ".$t->translate("is modified").".");
+   $be->box_full($t->translate("Error"), $t->translate("Document")." <b>".$db->f("TITEL")."</b> (ID: $id) ".$t->translate("is modified").".");
    break;
       case "D":
-   $be->box_full($t->translate("Error"), $t->translate("Document")." <b>".$db->f("TITEL")."</b> ".$t->translate("is deleted").".");
+   $be->box_full($t->translate("Error"), $t->translate("Document")." <b>".$db->f("TITEL")."</b> (ID: $id) ".$t->translate("is deleted").".");
    break;
       default:
         $be->box_full($t->translate("Error"), $t->translate("Document")." (ID: $id) ".$t->translate("does not exist").".");

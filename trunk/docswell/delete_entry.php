@@ -289,9 +289,12 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
                     <?php //############################# Alle neuen Dokumenteneinträge holen ##################################
                     		$db->query("SELECT *, DATE_FORMAT(AENDERUNGSDATUM,'%d.%m.%Y') AS fdate FROM DOKUMENT WHERE STATUS !='D' ORDER BY TITEL ASC");
 			  
+				$i = 0;
 				  while ($db->next_record()) {	
                             	  	echo "<option value=\"".$db->f("ID")."\"";
-					echo ">".$db->f("fdate")." - ".$db->f("TITEL") ."</option>\n";                            	  
+					if ($i == 0) echo " selected";
+					echo ">".$db->f("fdate")." - ".$db->f("TITEL") ."</option>\n";
+					$i++; 
                             	  }
                      ?>
                           </select>
