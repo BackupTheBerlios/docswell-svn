@@ -19,6 +19,8 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
+require("./include/prepend.php3");
+
 if ($select_cat) { 
 	$add_string = "search=$search&Sprache=$Sprache&typ=$typ&format=$format&Autor=$Autor"; 
 	$mode=9;
@@ -34,7 +36,7 @@ if (isset($auth) && !empty($auth->auth["perm"])) {
                   "perm" => "DocsWell_Perm"));
 }
 
-require("header.inc");
+require("./include/header.inc");
 
 $bx = new box("100%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
 $bs = new box("100%",$th_strip_frame_color,$th_strip_frame_width,$th_strip_title_bgcolor,$th_strip_title_font_color,$th_strip_title_align,$th_strip_body_bgcolor,$th_strip_body_font_color,$th_strip_body_align);
@@ -191,12 +193,6 @@ if ($numiter > 1) {
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 @page_close();
 ?>
-
-
-
-
-
-

@@ -18,13 +18,15 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################  
 
+require("./include/prepend.php3");
+
 page_open(array("sess" => "DocsWell_Session",
                 "auth" => "DocsWell_Auth",
                 "perm" => "DocsWell_Perm"));
 
 $logout = 1; // Special status for the logout page (menubar, etc.)
 
-require("header.inc");
+require("./include/header.inc");
 
 $bx = new box("80%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
 ?>
@@ -42,7 +44,7 @@ $bx->box_full($t->translate("Logout"), $msg);
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 $auth->logout();
 @page_close();
 ?>

@@ -18,9 +18,12 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ###################################################################### 
 
+require("./include/prepend.php3");
+
 page_open(array("sess" => "DocsWell_Session"));
-require("config.inc");
-require("lib.inc");
+
+require("./include/config.inc");
+require("./include/lib.inc");
 
 $db = new DB_DocsWell;
 
@@ -46,6 +49,5 @@ if ($ml_list) {
     echo "No application at ".date("l dS of F Y H:i:s")."\n";
   }
 }
-
 @page_close();
 ?>

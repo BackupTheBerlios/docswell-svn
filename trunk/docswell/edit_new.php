@@ -17,11 +17,13 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
+require("./include/prepend.php3");
+
 page_open(array("sess" => "DocsWell_Session",
                 "auth" => "DocsWell_Auth",
                 "perm" => "DocsWell_Perm"));
 
-require("header.inc");
+require("./include/header.inc");
 
 if (($category) && (! $kategorie)) $kategorie = $category;
 
@@ -429,9 +431,9 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 				<?php if ($error_ar["category"]): echo "<BR><font color=\"#AA0000\">".
         	                        $error_ar["category"]."</font>"; endif; ?>		
 				</TD>
-				<TD><a href="categories.php?mode=3&aid=<?php echo $ID ?>"><font size="2"><?php echo $t->translate("Select category") ?></font></a><br>
+				<TD><a href="categories.php?mode=3&aid=<?php echo $ID ?>"><font class="small"><?php echo $t->translate("Select category") ?></font></a><br>
 				<?php if ($perm->have_perm("editor") || $perm->have_perm("admin")) { ?>
-        	                   <a href="<?php $sess->purl("insert_kategorie.php") ?>"><font size="2"><?php echo $t->translate("Insert new category") ?></font></a>
+        	                   <a href="<?php $sess->purl("insert_kategorie.php") ?>"><font class="small"><?php echo $t->translate("Insert new category") ?></font></a>
 				<?php } ?></TD>
         	            </TR>
 	                    <TR>
@@ -470,7 +472,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 	                          </select>
 				</TD>
 				<TD>
-	                        	<a href="insert_sprache.php"><font size="2"><?php echo $t->translate("Insert new language") ?></font></a>
+	                        	<a href="insert_sprache.php"><font class="small"><?php echo $t->translate("Insert new language") ?></font></a>
 	                        </TD>
 	                      </TR>
 	                      <TR>
@@ -492,11 +494,11 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 	                          </select>
 				</TD>
 				<TD>
-	                           <a href="insert_typ.php"><font size="2"><?php echo $t->translate("Insert new type") ?></font></a>
+	                           <a href="insert_typ.php"><font class="small"><?php echo $t->translate("Insert new type") ?></font></a>
 				</TD>
 	                      </TR>
 	                      <TR>
-	                        <TD align="right" valign="top" ><B><?php echo $t->translate("Format") ?>:</B><BR><font size="1">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
+	                        <TD align="right" valign="top" ><B><?php echo $t->translate("Format") ?>:</B><BR><font class="small">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
 	                        <TD>
 	                          <select name="format[]" size="5" multiple>
 	                    <?php //############################# Dokumentformate holen ##################################
@@ -518,11 +520,11 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 	                                $error_ar["format"]."</font>"; endif; ?>
 				</TD>
 				<TD>
-	                           <a href="insert_format.php"><font size="2"><?php echo $t->translate("Insert new format") ?></font></a>
+	                           <a href="insert_format.php"><font class="small"><?php echo $t->translate("Insert new format") ?></font></a>
 				</TD>
 	                      </TR>
 	                    <TR>
-	                        <TD align=right><B><?php echo $t->translate("Author") ?>:</B><BR><font size="1">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
+	                        <TD align=right><B><?php echo $t->translate("Author") ?>:</B><BR><font class="small">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
 	                      	<TD>
 	                          <select name="mautoren[]" size="15" multiple>
 	                    <?php //############################# Autoren holen ##################################
@@ -546,7 +548,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 	                  </select>
 				</TD>
 				<TD>
-	                           <a href="insert_autor.php"><font size="2"><?php echo $t->translate("Insert new author") ?></font></a>
+	                           <a href="insert_autor.php"><font class="small"><?php echo $t->translate("Insert new author") ?></font></a>
 				</TD>
 	                      </TR>
 	                    <TR>
@@ -566,7 +568,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 	                      </TR>
 	                    <TR>
 	                        <TD align="right" valign="top"><B><?php echo $t->translate("Created"); ?>:<br>
-	                          </B><font size="1">(DD.MM.YYYY) </font></TD>
+	                          </B><font class="small">(DD.MM.YYYY) </font></TD>
                         <?php 
 			      $ejahr = substr($eintrag[ERSTELLUNGSDATUM],0,4);
 			      $emonat = substr($eintrag[ERSTELLUNGSDATUM],5,2);
@@ -587,7 +589,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 	                      </TR>
 	                    <TR>
 	                        <TD align=right><B><?php echo $t->translate("Last updated"); ?>:<br>
-	                          </B><font size="1">(DD.MM.YYYY) </font></TD>
+	                          </B><font class="small">(DD.MM.YYYY) </font></TD>
                         	<?php 
 			      $ajahr = substr($eintrag[AENDERUNGSDATUM],0,4);
 			      $amonat = substr($eintrag[AENDERUNGSDATUM],5,2);
@@ -783,21 +785,6 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 @page_close();
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

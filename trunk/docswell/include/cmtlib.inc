@@ -62,7 +62,7 @@ function cmtmod($query) {
   $db->query($query);
   $db->next_record();
   $bx->box_begin();
-  $bx->box_title($t->translate("Comment about")." \"".$db->f("TITEL")."\"");
+  $bx->box_title($t->translate("Your Comment about")." \"".$db->f("TITEL")."\"");
   $bx->box_body_begin();
   echo "<form action=\"".$sess->self_url()."\" method=\"POST\">\n";
   echo "<table border=0 align=center cellspacing=0 cellpadding=3>\n";

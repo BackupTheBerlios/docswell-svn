@@ -9,13 +9,13 @@
      function translate($phrase) {
       switch ($this->$tolang) {
       case "English":
-	    require("English-lang.inc");
+	    require("./include/English-lang.inc");
         break;
       case "German":
-	    require("German-lang.inc");
+	    require("./include/German-lang.inc");
         break;
       default:
-	    require("English-lang.inc");
+	    require("./include/English-lang.inc");
         break;
       }
 	  return($tmp);

@@ -17,11 +17,13 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
+require("./include/prepend.php3");
+
 page_open(array("sess" => "DocsWell_Session",
                 "auth" => "DocsWell_Auth",
                 "perm" => "DocsWell_Perm"));
 
-require("header.inc");
+require("./include/header.inc");
 
 if (($category) && (! $kategorie)) $kategorie = $category;
 
@@ -727,18 +729,6 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin")) || ($perm->have_
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 @page_close();
 ?>
-
-
-
-
-
-
-
-
-
-
-
-

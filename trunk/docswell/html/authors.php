@@ -19,7 +19,7 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ###################################################################### 
 
-require("header.inc");
+require("./include/header.inc");
 
 ?>
 
@@ -54,5 +54,5 @@ a look at <A HREF="http://www.berlios.de">http://www.berlios.de</A> for further 
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 ?>

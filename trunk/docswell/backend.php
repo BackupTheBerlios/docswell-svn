@@ -18,14 +18,16 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ###################################################################### 
 
+require "./include/prepend.php3";
+
 header("Content-Type: text/plain");
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
 header("Pragma: no-cache");                             // HTTP/1.0
 
-require "config.inc";
-require "lib.inc";
+require "./include/config.inc";
+require "./include/lib.inc";
 
 echo "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
 echo "<!DOCTYPE rss PUBLIC \"-//Netscape Communications//DTD RSS 0.91//EN\"\n";

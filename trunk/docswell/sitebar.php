@@ -18,6 +18,8 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ###################################################################### 
 
+require "./include/prepend.php3";
+
 page_open(array("sess" => "DocsWell_Session"));
 // Disabling cache
 header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
@@ -25,11 +27,11 @@ header("Expires: ".gmdate("D, d M Y H:i:s")." GMT");
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
 header("Pragma: no-cache"); 				// HTTP/1.0
 
-require "config.inc";
-require "lib.inc";
-require("translation.inc");
-require("lang.inc");
-require("box.inc");
+require("./include/config.inc");
+require("./include/lib.inc");
+require("./include/translation.inc");
+require("./include/lang.inc");
+require("./include/box.inc");
 $t = new translation($la);
 $db = new DB_DocsWell;
 
@@ -42,7 +44,7 @@ $bx = new box("95%",$th_box_frame_color,0,$th_box_title_bgcolor,$th_box_title_fo
    <meta http-equiv="expires" content="0">
    <meta http-equiv="Refresh" content="1200; URL=<?php echo $sys_url."sitebar.php"?>">
    <title><?php echo $sys_name;?> - <?php echo $t->translate($sys_title);?></title>
-<link rel="stylesheet" type="text/css" href="berlios.css">
+<link rel="stylesheet" type="text/css" href="style.php">
 </head>
 <body bgcolor="<?php echo $th_body_bgcolor;?>" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0" marginwidth="0">
 
@@ -59,6 +61,7 @@ while($db->next_record()) {
   echo "<li><font size=\"1\"><a href=\"".$sys_url."docbyid.php?id=".$db->f("ID")."\" target=\"_content\">".$db->f("TITEL")."</a></font></li>\n";
   $i++;
 }
+echo "<p><b><font size=\"1\"><a href=\"".$sys_url."\" target=\"_content\">more...</a></font></b>\n";
 $bx->box_body_end();
 $bx->box_end();
 ?>

@@ -6,7 +6,7 @@
 </tr>
 
 <tr ALIGN=RIGHT BGCOLOR="<?php echo $th_nav_bgcolor;?>">
-<td><a href="<?php $sess->purl(".") ?>" class="menus"><?php echo $t->translate("Home"); ?></a>
+<td><a href="<?php $sess->purl("index.php") ?>" class="menus"><?php echo $t->translate("Home"); ?></a>
 <br><a href="<?php $sess->purl("faq.php") ?>" class="menus"><?php echo $t->translate("Q&amp;A"); ?></a>
 
 <br><br>
@@ -82,7 +82,7 @@ if (( ($perm->have_perm("editor")) || ($perm->have_perm("admin"))) && !($logout)
 ?>
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Editor"); ?></font></span></td>
 </tr>
 <tr ALIGN=RIGHT BGCOLOR="<?php echo $th_nav_bgcolor;?>">
@@ -141,7 +141,7 @@ if (
 ?>
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Administration"); ?></font></span></td>
 </tr>
 
@@ -230,7 +230,7 @@ if (
 <!-- Search menu -->
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Search"); ?></font></span></td>
 </tr>
 
@@ -252,7 +252,7 @@ echo "<p><input TYPE=\"submit\" NAME=\"Search\" VALUE=\"".$t->translate("Search"
 <!-- Language menu -->
 <table BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH="100%">
 <tr BGCOLOR="<?php echo $th_navstrip_bgcolor;?>">
-<td ALIGN=CENTER><img SRC="http://www.berlios.de/images/blank.gif" height="1" width="135" border=0><br>
+<td ALIGN=CENTER><img SRC="images/blank.gif" height="1" width="135" border=0><br>
 <span class="titlebar"><font color="<?php echo $th_navstrip_font_color;?>"><?php echo $t->translate("Language");?></font></span></td>
 </tr>
 

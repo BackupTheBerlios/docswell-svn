@@ -25,7 +25,7 @@
 <tr VALIGN=TOP BGCOLOR="<?php echo $th_nav_bgcolor;?>">
 <td BGCOLOR="<?php echo $th_body_bgcolor;?>"><a href="<?php echo $sys_url_title;?>"><img SRC="<?php echo $sys_logo_image;?>" HSPACE=5 VSPACE=5 BORDER=0 height=<?php echo $sys_logo_heigth;?> width=<?php echo $sys_logo_width;?> ALT="<?php echo $sys_logo_alt;?>"></a></td>
 <td WIDTH="10"><img SRC="images/blank.gif" BORDER=0 height=1 width=10></td>
-<td VALIGN="middle" WIDTH="99%"><font color="<?php echo $th_nav_font_color;?>"><b><font size=+1><?php echo $sys_name;?></font></b>
+<td VALIGN="middle" WIDTH="99%"><font color="<?php echo $th_nav_font_color;?>"><b class="title"><?php echo $sys_name;?></b>
 <br><?php echo $t->translate($sys_title);?></font></td>
 
 <!-- logo at right -->

@@ -18,6 +18,8 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ###################################################################### 
 
+require("./include/prepend.php3");
+
 page_open(array("sess" => "DocsWell_Session"));
 if (isset($auth) && !empty($auth->auth["perm"])) {
   page_close();
@@ -31,8 +33,8 @@ header("Content-Type: text/plain");
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
 header("Pragma: no-cache");                             // HTTP/1.0
 
-require "config.inc";
-require "lib.inc";
+require("./include/config.inc");
+require("./include/lib.inc");
 
 $db = new DB_DocsWell;
 $db->query("SELECT * FROM DOKUMENT WHERE STATUS='A' ORDER BY AENDERUNGSDATUM DESC limit 10");

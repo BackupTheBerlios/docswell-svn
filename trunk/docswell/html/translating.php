@@ -19,7 +19,7 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ###################################################################### 
 
-require("header.inc");
+require("./include/header.inc");
 
 ?>
 
@@ -134,5 +134,5 @@ April 2001</TD></TR>
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 ?>

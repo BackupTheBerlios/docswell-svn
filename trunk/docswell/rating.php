@@ -1,5 +1,3 @@
-<html>
-<head>
 <?
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -14,11 +12,15 @@ if($dokuid) {
      $db->query("UPDATE DOKUMENT SET BEWERTUNG=BEWERTUNG+$bewerten, BEWVONANZP=BEWVONANZP+1 WHERE ID=$dokuid");      
 }
 
-$docurl = substr($sys_url, 0, (strlen($sys_url)-1))."$url?id=$dokuid";
-   echo "<meta http-equiv=\"refresh\" content=\"0; URL=$docurl\">\n";
+$docurl = "$url?id=$dokuid";
+?>
+<html>
+<head>
+<?php
+echo "<meta http-equiv=\"refresh\" content=\"0; URL=$docurl\">\n";
 ?>
 </head>
 <body>
-   <a href="<?php echo $docurl ?>">back</a>
+   <a href="<?php echo $docurl ?>">Back</a>
 </body>
 </html>

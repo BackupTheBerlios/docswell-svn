@@ -89,7 +89,7 @@ function datestr($date) {
 
 function timestr_short($timestamp){
     global $t;
-    $time = strftime("%a,%e.%b,%H:%M:%S", $timestamp);
+    $time = strftime("%a, %e. %b, %H:%M", $timestamp);
     return $time;
 }
 
@@ -175,7 +175,7 @@ function docfull($query) {
   $dbForm = new DB_DocsWell;
   $dbForm->query("SELECT * FROM FORMAT WHERE DOKUID=".$db->f("ID"));
   
-  echo "<b>".$t->translate("by")." <a href=\"mailto:".$dbAn->f("email_usr")."\">".$dbAn->f("username")."</a> - ".$timestamp."</b>\n";
+  echo "<b class=\"small\">".$t->translate("by")." <a href=\"mailto:".$dbAn->f("email_usr")."\">".$dbAn->f("username")."</a> - ".$timestamp."</b>\n";
   if (($db->f("BILD")) && (file_exists("./images_docs/".$db->f("BILD")))) $bild = $db->f("BILD");
   elseif (($db->f("BILD_REFERENZ")) && (file_exists("./images_docs/".$db->f("BILD_REFERENZ")))) $bild = $db->f("BILD_REFERENZ"); 
   if ($bild) {
@@ -254,8 +254,8 @@ function docfull($query) {
     echo "<FORM ACTION=\"rating.php\" METHOD=\"POST\">\n";
     echo "<INPUT TYPE=\"HIDDEN\" NAME=\"dokuid\" VALUE=\"".$db->f("ID")."\">\n";
     echo "<INPUT TYPE=\"HIDDEN\" NAME=\"url\" VALUE=\"".$sess->self_url()."\">\n";
-    echo "<br><table cellpadding=0 cellspacing=0 border=0><tr>\n<td align=center><IMG SRC=\"http://developer.berlios.de/images/rateit.png\" HEIGHT=9 WIDTH=100></td></tr>\n";
-    #echo "<IMG src=\"http://www.berlios.de/images/blank.gif\" height=1 width=\"-15\" border=0 alt=\"blank.gif\">	<IMG SRC=\"http://www.berlios.de/images/ic/caret.png\" HEIGHT=6 WIDTH=9><BR>\n";
+    echo "<br><table cellpadding=0 cellspacing=0 border=0><tr>\n<td align=center><IMG SRC=\"images/rateit.png\" HEIGHT=9 WIDTH=100></td></tr>\n";
+    #echo "<IMG src=\"images/blank.gif\" height=1 width=\"-15\" border=0 alt=\"blank.gif\">	<IMG SRC=\"images/caret.png\" HEIGHT=6 WIDTH=9><BR>\n";
     echo "<tr><td align=center><INPUT TYPE=\"RADIO\" NAME=\"bewerten\" VALUE=1>\n";
     echo "<INPUT TYPE=\"RADIO\" NAME=\"bewerten\" VALUE=2>\n";
     echo "<INPUT TYPE=\"RADIO\" NAME=\"bewerten\" VALUE=3></td></tr>\n";
@@ -305,7 +305,7 @@ function docfull($query) {
     echo "</td></tr></table>\n";
     $bx->box_body_end();
     $bx->box_title_begin();
-    echo "<a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("ID")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>&nbsp;&nbsp;<a href=\"".$sess->url("cmtdoc.php").$sess->add_query(array("id" => $db->f("ID")))."\"><img src=\"images/txt.png\" border=0 alt=\"".$t->translate("Comment")."\"></a>\n";
+    echo "<b><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("ID")))."\" class=\"small\"><img src=\"images/recycled.png\" border=0>&nbsp;".$t->translate("Update")."</a>&nbsp;&nbsp;<a href=\"".$sess->url("cmtdoc.php").$sess->add_query(array("id" => $db->f("ID")))."\" class=\"small\"><img src=\"images/txt.png\" border=0>&nbsp;".$t->translate("Comment")."</a></b>\n";
    $bx->box_title_end();
    $bx->box_end();
 }
@@ -463,25 +463,25 @@ function docupdate($query) {
     docd();
 
     $bx->box_title_begin();
-    echo "<table width=100% border=0 cellspacing=0 cellpadding=3><tr valign=bottom>\n";
+    echo "<table width=100% border=0 cellspacing=0 cellpadding=0><tr valign=bottom>\n";
 
     $db_status = $db->f("STATUS");
     //echo $db_status;
     switch ($db_status) {
       case 'P':
-        echo "<td width=40%><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("id")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
-        echo "<td width=60% align=right border=0><b>".$t->translate("Waiting for Review by an Editor")."</b>\n";
+        echo "<td width=40%><b><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("id")))."\" class=\"small\"><img src=\"images/recycled.png\" border=0>&nbsp;".$t->translate("Review")."</a></b></td>\n";
+        echo "<td width=60% align=right border=0><b class=\"small\">".$t->translate("Waiting for Review by an Editor")."</b>\n";
         break;
       case 'D':
-        echo "<td width=40%><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("id")))."\"><img src=\"images/editdelete.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
-        echo "<td width=60% align=right border=0><b>".$t->translate("Is deleted")."</b>\n";
+        echo "<td width=40%><b><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("id")))."\" class=\"small\"><img src=\"images/editdelete.png\" border=0>&nbsp;".$t->translate("Review")."</a></b></td>\n";
+        echo "<td width=60% align=right border=0><b class=\"small\">".$t->translate("Is deleted")."</b>\n";
         break;
       case 'M':
-        echo "<td width=40%><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("id")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Review")."\"></a></td>\n";
-        echo "<td width=60% align=right border=0><b>".$t->translate("Is modified")."</b>\n";
+        echo "<td width=40%><b><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("id")))."\"><img src=\"images/recycled.png\" border=0>&nbsp;".$t->translate("Review")."</a></b></td>\n";
+        echo "<td width=60% align=right border=0><b class=\"small\">".$t->translate("Is modified")."</b>\n";
         break;
       default:
-        echo "<td width=100%><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("id")))."\"><img src=\"images/recycled.png\" border=0 alt=\"".$t->translate("Update")."\"></a>\n";
+        echo "<td width=100%><b><a href=\"".$sess->url("update_online.php").$sess->add_query(array("ID" => $db->f("id")))."\" class=\"small\"><img src=\"images/recycled.png\" border=0>&nbsp;".$t->translate("Update")."</a></b>\n";
         break;
     }
     echo "</td></tr></table>\n";
@@ -539,7 +539,7 @@ function docd() {
   $db3->query($Sql);
   $anz = $db3->num_rows();
   if ($anz > 0) { //Autoren ausgeben
-  	echo "<b>".$t->translate("by")." ";
+  	echo "<b class=\"small\">".$t->translate("by")." ";
   	$counter = 0; 
   	while ($db3->next_record()) {
 		$counter++;
@@ -548,11 +548,10 @@ function docd() {
 		if (strlen($db3->f("email")) > 0) echo "</a>";
 		if ($counter < $anz) echo ", ";
   	}
-	echo "</b> - ";
+	echo " - ";
   }
-  echo "<b>";
   echo $timestamp;
-  echo " (".$db->f("ANGELEGTVON").")\n</b>";
+  echo " (".$db->f("ANGELEGTVON").")</b>\n";
   //echo $db->f("BILD_REFERENZ")."<";
     if (($db->f("BILD")) && (file_exists("./images_docs/".$db->f("BILD")))) $bild = $db->f("BILD");
     elseif (($db->f("BILD_REFERENZ")) && (file_exists("./images_docs/".$db->f("BILD_REFERENZ")))) $bild = $db->f("BILD_REFERENZ"); 
@@ -593,11 +592,11 @@ function doctyp() {
       $bx->box_title_end();
       $bx->box_body_begin();
 
-      $db->query("SELECT ID,TITEL, DATE_FORMAT(AENDERUNGSDATUM,'%Y.%m.%d, %T') AS AENDERUNGSDATUM, DATE_FORMAT(AENDERUNGSDATUM,'%d.%m.%Y, %T') AS AENDERUNGSDATUM1 FROM DOKUMENT WHERE TYP='$typid' AND STATUS='A' ORDER BY AENDERUNGSDATUM DESC, ID DESC LIMIT 10");
+      $db->query("SELECT ID,TITEL, AENDERUNGSDATUM FROM DOKUMENT WHERE TYP='$typid' AND STATUS='A' ORDER BY AENDERUNGSDATUM DESC, ID DESC LIMIT 10");
       while($db->next_record()) {
-        echo "<li><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("ID")))."\">".$db->f("TITEL")."</a> <nobr>(".$db->f("AENDERUNGSDATUM1").")</nobr></li>\n";
+        echo "<li><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("ID")))."\">".$db->f("TITEL")."</a> <nobr class=\"small\">[".strftime("%a, %e. %b, %H:%M %Z", mktimestampdw($db->f("AENDERUNGSDATUM")))."]</nobr></li>\n";
       }
-      echo "<p><b><a href=\"".$sess->url("docbytyp.php").$sess->add_query(array("typ" => "$typid"))."\">".$t->translate("more")."...</a></b>";
+      echo "<p class=\"small\"><b><a href=\"".$sess->url("docbytyp.php").$sess->add_query(array("typ" => "$typid"))."\">".$t->translate("more")."...</a></b>";
       $bx->box_body_end();
       $bx->box_end();
     }
@@ -1015,9 +1014,9 @@ function maketree ($parent, $open, $level, $mode=1, $aid=0, $add_string="") {
 	while($db->next_record()) {
 		for ($i=0;$i<$level;$i++)
 		if ($level > $i) {
-			echo " <img src=\"/images/dirnext.png\"> ";
+			echo "&nbsp;<img src=\"images/dirnext.png\" alt=\":\">";
 			if ($level == $i+1) 
-				echo " <img src=\"/images/dirleave.png\"> ";	
+				echo "&nbsp;<img src=\"images/dirleave.png\" alt=\"...\">";	
 			else 
 				echo "&nbsp;&nbsp;&nbsp;";
 		}
@@ -1030,13 +1029,13 @@ function maketree ($parent, $open, $level, $mode=1, $aid=0, $add_string="") {
 		//##########
 
 		if (($cnt > 0) && ($open[$db->f("ID")] != 1)) {
-			echo "<a href=\"categories.php?";
+			echo "&nbsp;<a href=\"categories.php?";
 			foreach (array_keys($open) as $onekey) 
 				echo "pn[".$onekey."]=".$open[$onekey]."&";
 			echo "pn[".$db->f("ID")."]=1&mode=$mode&aid=$aid&add_string=".urlencode($add_string);
 			echo "\">";
 		} elseif (($cnt > 0) && ($open[$db->f("ID")] == 1)) {
-			echo "<a href=\"categories.php?";
+			echo "&nbsp;<a href=\"categories.php?";
 			foreach (array_keys($open) as $onekey) {
 				if ($onekey != $db->f("ID"))
 				echo "pn[".$onekey."]=".$open[$onekey]."&";
@@ -1046,10 +1045,10 @@ function maketree ($parent, $open, $level, $mode=1, $aid=0, $add_string="") {
 		} 
 
 		if (($cnt > 0) && ($open[$db->f("ID")] != 1)) {
-			echo " <img src=\"/images/diropen.png\" border=\"0\"></a> ";
+			echo "<img src=\"images/diropen.png\" border=\"0\" alt=\"[+]\"></a>";
 		}
 		elseif (($cnt > 0) && ($open[$db->f("ID")] == 1)) {
-			echo " <img src=\"/images/dirclose.png\" border=\"0\"></a> ";
+			echo "<img src=\"images/dirclose.png\" border=\"0\" alt=\"[-]\"></a>";
 		}
 
 		if (($cnt == 0) || (($mode >5) && ($mode<9))) {
@@ -1058,7 +1057,7 @@ function maketree ($parent, $open, $level, $mode=1, $aid=0, $add_string="") {
 			$db_leave->next_record();
 			$cnt2 = $db_leave->f("cnt2");
 			if (($cnt2 > 0) || ($mode > 1)) {
-				echo "<a href=\"$link?category=".$db->f("ID")."&".urldecode($add_string);
+				echo "&nbsp;<a href=\"$link?category=".$db->f("ID")."&".urldecode($add_string);
 				if ($mode==3) echo "&ID=$aid&status=edit_new";
 				if ($mode==4) echo "&ID=$aid";
 				if ($mode==5) echo "&ID=$aid&status=edit_new";
@@ -1069,11 +1068,11 @@ function maketree ($parent, $open, $level, $mode=1, $aid=0, $add_string="") {
 				//if ($mode==9) echo "&".$add_string;
 				echo "\">".$t->translate($db->f("NAME"))."</a>";
 			} else 
-				echo $t->translate($db->f("NAME"));
-			echo " [".$cnt2."]";
+				echo "&nbsp;".$t->translate($db->f("NAME"));
+			echo "&nbsp;[".$cnt2."]";
 		} else
-			echo $t->translate($db->f("NAME"));
-		echo "<br>";
+			echo "&nbsp;".$t->translate($db->f("NAME"));
+		echo "<br>\n";
 
 
 		if ($open[$db->f("ID")]==1) 

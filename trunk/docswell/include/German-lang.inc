@@ -94,7 +94,7 @@ switch($phrase) {
      case "Question": $tmp = "Frage"; break;
      case "Answer": $tmp = "Antwort"; break;
 
-// Apps update
+// Docs update
      case "Comment": $tmp = "Kommentar"; break;
      case "Review": $tmp = "Überprüfen"; break;
      case "Update": $tmp = "Aktualisieren"; break;
@@ -103,10 +103,10 @@ switch($phrase) {
      case "Last updated": $tmp = "Letzte &Auml;nderung"; break;
      case "Show original entry": $tmp = "Original Eintrag anzeigen"; break;
 
-// Apps not yet reviewed
+// Docs not yet reviewed
      case "Waiting for Review by an Editor": $tmp = "Wartet auf Überprüfung durch einen Editor"; break;
 
-// Apps by identifier
+// Docs by identifier
      case "Document": $tmp = "Dokument"; break;
      case "Others by Author": $tmp = "Anderes vom Autor"; break;
      case "Others from the authors": $tmp = "Anderes von den Autoren"; break;
@@ -208,11 +208,11 @@ switch($phrase) {
      case "Select category": $tmp = "Kategorie ausw&auml;hlen"; break;
 	
   
-// Update Doc
+// Update doc
      case "Update an existing document": $tmp = "Aktualiseren eines existierenden Dokuments"; break;
      case "select another one": $tmp = "neues und zwar"; break;
 
-// New Language
+// New language
      case "Please enter a new language": $tmp = "Bitte geben Sie eine Sprache ein"; break;
      case "This language already exists": $tmp = "Diese Sprache existiert bereits"; break;
      
@@ -239,6 +239,7 @@ switch($phrase) {
      case "E-Mail": $tmp ="E-Mail"; break;
      case "Please enter a last name": $tmp = "Bitte geben Sie einen Nachnamen ein"; break;
      case "This author already exists": $tmp = "Diese Autor existiert bereits"; break;
+     case "Author Administration": $tmp = "Administration der Autoren"; break;
      case "Insert Author": $tmp = "Autor einf&uuml;gen"; break;
      case "This email already exists": $tmp = "Diese E-Mail Adresse existiert bereits"; break;
      case "Change author": $tmp = "Autor &auml;ndern"; break;
@@ -275,6 +276,10 @@ switch($phrase) {
      case "Subject": $tmp = "Thema"; break;
      case "Comment": $tmp = "Kommentar"; break;
      case "Send": $tmp = "Senden"; break;
+     case "Posted on": $tmp = "Erstellt am"; break;
+     case "Delete this comment? (please, think there's no way for undoing comment deletion)": $tmp = "Diesen Kommentar löschen? (Bitte bedenken Sie, dass der Kommentar nicht wiederhergestellt werden kann)"; break;
+     case "Comment deleted": $tmp = "Kommentar gelöscht"; break;
+     case "Selected Comment was deleted": $tmp = "Ausgewählter Kommentar wurde gelöscht"; break;
 
 // Login
      case "$GLOBALS[sys_name] Login": $tmp = "Bei $GLOBALS[sys_name] Einloggen"; break;
@@ -301,7 +306,7 @@ switch($phrase) {
      case "is deleted": $tmp = "wurden gelöscht"; break;
 
 // Category admin
-     case "Document Category Administration": $tmp = "Administration der Dokumentkategorien"; break;
+     case "Category Administration": $tmp = "Administration der Kategorien"; break;
      case "Insert Category": $tmp = "Kategorie hinzufügen"; break;
      case "Rename Category": $tmp = "Kategorie umbenennen"; break;
      case "Change Category Description": $tmp = "Kategoriebeschreibung ändern"; break;
@@ -319,8 +324,8 @@ switch($phrase) {
      case "has been renamed to": $tmp = "wurde umbenannt in"; break;
      case "Deletion succesfully completed.": $tmp = "Erfolgreich gelöscht."; break;
 
-// Document type admin
-     case "Document Type Administration": $tmp = "Administration der Dokumenttypen"; break;
+// Type admin
+     case "Type Administration": $tmp = "Administration der Typen"; break;
      case "Insert Type": $tmp = "Typ hinzufügen"; break;
      case "Rename Type": $tmp = "Typ umbenennen"; break;
      case "Change Type Description": $tmp = "Typbeschreibung ändern"; break;
@@ -331,8 +336,8 @@ switch($phrase) {
      case "New Type Description": $tmp = "Neue Typbeschreibung"; break;
      case "Type": $tmp = "Typ"; break;
 
-// Document format admin
-     case "Document Format Administration": $tmp = "Administration der Dokumentformate"; break;
+// Format admin
+     case "Format Administration": $tmp = "Administration der Formate"; break;
      case "Insert Format": $tmp = "Format hinzufügen"; break;
      case "Rename Format": $tmp = "Format umbenennen"; break;
      case "Change Format Description": $tmp = "Formatbeschreibung ändern"; break;
@@ -342,8 +347,8 @@ switch($phrase) {
      case "New Format Description": $tmp = "Neue Formatbeschreibung"; break;
      case "Format": $tmp = "Format"; break;
 
-// Document language admin
-     case "Document Language Administration": $tmp = "Administration der Dokumentsprachen"; break;
+// Language admin
+     case "Language Administration": $tmp = "Administration der Sprachen"; break;
      case "Insert Language": $tmp = "Sprache hinzufügen"; break;
      case "Rename Language": $tmp = "Sprache umbenennen"; break;
      case "Delete Language": $tmp = "Sprache löschen"; break;
@@ -380,13 +385,17 @@ switch($phrase) {
     case "Yes, Delete": $tmp = "Ja, löschen"; break;
     case "No, Just Modify": $tmp = "Nein, nur ändern"; break;
     
+// Comment admin
+    case "Comment deteted": $tmp = "Kommentar gelöscht"; break;
+    case "Selected Comment was deteted": $tmp = "Ausgewählter Kommentar wurde gelöscht"; break;
+
 // Status admin
     case "Check status": $tmp = "Status pr&uuml;fen"; break;
-    case "Document and category check": $tmp = "Dokument und Kategorie konsistenz Pr&uuml;fung"; break;
+    case "Document and category check": $tmp = "Dokumenten- und Kategorie-Konsistenzpr&uuml;fung"; break;
     case "Documents with categories that have further sub-categories (documents should only hang on leaves)": $tmp = "Dokumente die sich in Kategorien befinden, die weitere Unterkategorien besitzen ( Dokumenten-Kategorien sollten immer &quot;Bl&auml;tter&quot; sein )."; break;
     case "No documents found": $tmp = "Keine Dokumente vorhanden"; break;
     case "Documents with deleted category": $tmp = "Dokumente mit gel&ouml;schter Kategorie"; break;
-    case "All deleted documents": $tmp = "Alle gel&ouml;schten Dokumenten"; break;
+    case "All deleted documents": $tmp = "Alle gel&ouml;schten Dokumente"; break;
 
 // Announcements
     case "by": $tmp = "von"; break;
@@ -414,14 +423,9 @@ switch($phrase) {
      case "Docs of User": $tmp = "Dok. des Benutzers"; break;
      case "No Docs of User exist": $tmp = "Es existiert kein Dokument des Benutzers"; break;
 
-// Pending Apps
-     case "No pending Apps exist": $tmp = "Es existiert keine zu überprüfende Anwendung"; break;
-
-// Deleted or modified apps
+// Deleted or modified docs
      case "Is deleted": $tmp = "Ist gelöscht"; break;
      case "Is modified": $tmp = "Ist modifiziert"; break;
-     case "No deleted Apps exist": $tmp = "Es existieren keine gelöschten Anwendungen"; break;
-     case "No modified Apps exist": $tmp = "Es existieren keine modifizierten Anwendungen"; break;
 
 // Users
     case "No": $tmp = "Nr"; break;
@@ -451,83 +455,6 @@ switch($phrase) {
      case "daily": $tmp = "täglich"; break;
      case "weekly": $tmp = "wöchentlich"; break;
 
-// Statistics
-	 case "$GLOBALS[sys_name] Statistics": $tmp = "$GLOBALS[sys_name] Statistiken"; break;
-	 case "General $GLOBALS[sys_name] Statistics": $tmp = "Generelle $GLOBALS[sys_name] Statistiken"; break;
-	 case "Apps by Importance": $tmp = "Anw. nach Bedeutung"; break;
-	 case "Apps by Hits": $tmp = "Anw. nach Zugriffen"; break;
-	 case "Apps by Homepage Visits": $tmp = "Anw. nach Homepage-Besuchen"; break;
-	 case "Apps by Downloads": $tmp = "Anw. nach Downloads"; break;
-	 case "Top downloaded RPM Packages": $tmp = "Top der heruntergeladenen RPM-Pakete"; break;
-	 case "Top downloaded Debian Packages": $tmp = "Top der heruntergeladenen Debian-Pakete"; break;
-	 case "Top downloaded Slackware Packages": $tmp = "Top der heruntergeladenen Slackware-Pakete"; break;
-	 case "Apps and Downloads by Urgency": $tmp = "Anw. und Downloads nach Dringlichkeit"; break;
-	 case "Apps and Downloads by Version Types": $tmp = "Anw. und Downloads nach Versionstypen"; break;
-	 case "Apps and Importance by Sections": $tmp = "Anw. und Bedeutung nach Sektionen"; break;
-	 case "Apps by Categories": $tmp = "Anw. nach Kategorien"; break;
-	 case "Apps by Version Numbers": $tmp = "Anw. nach Versionsnummern"; break;
-	 case "Apps and Downloads by Package Formats": $tmp = "Anw. und Downloads nach Paketformaten"; break;
-	 case "Importance by Licenses": $tmp = "Bedeutung nach Lizenzen"; break;
-	 case "Importance by Email Domains": $tmp = "Bedeutung nach E-Mail-Domainen"; break;
-	 case "Apps by Email Domains": $tmp = "Anw. nach E-Mail-Domainen"; break;
-	 case "Apps by Sections and Email Domains": $tmp = "Anw. nach Sektionen und E-Mail-Domainen"; break;
-	 case "Apps by Licenses": $tmp = "Anw. nach Lizenzen"; break;
-	 case "Apps by Licenses and Email Domains": $tmp = "Anw. nach Lizenzen und E-Mail-Domainen"; break;
-
-// General Statistics
-	 case "Number of Applications in $GLOBALS[sys_name]": $tmp = "Anzahl der Anwendungen in $GLOBALS[sys_name]"; break;
-	 case "Total Number of Insertions and Modifications": $tmp = "Gesamtzahl der Eintragungen und Modifikationen"; break;
-	 case "Number of Insertions and Modifications during the last week": $tmp = "Anzahl der Eintragungen und Modifikationen in der letzen Woche"; break;
-	 case "Number of pending Applications": $tmp = "Anzahl der zu prüfenden Anwendungen"; break;
-	 case "Number of $GLOBALS[sys_name] authorised Users": $tmp = "Anzahl der bei $GLOBALS[sys_name] registrierten Benutzer"; break;
-	 case "Number of Comments on Applications": $tmp = "Anzahl der Kommentare zu Anwendungen"; break;
-	 case "Number of Licenses listed in $GLOBALS[sys_name]": $tmp = "Anzahl der Lizenzen in $GLOBALS[sys_name]"; break;
-	 case "Number of $GLOBALS[sys_name] Sections": $tmp = "Anzahl der Sektionen in $GLOBALS[sys_name]"; break;
-	 case "Number of $GLOBALS[sys_name] Categories": $tmp = "Anzahl der Kategorien in $GLOBALS[sys_name]"; break;
-	 case "Total Number of Hits on Applications": $tmp = "Gesamtzahl der Zugriffe auf Anwendungen"; break;
-	 case "Number of redirected Homepages": $tmp = "Anzahl der Zugriffe auf Homepages"; break;
-	 case "Number of Downloads": $tmp = "Anzahl der Zugriffe auf Downloads"; break;
-	 case "Number of redirected Changelogs": $tmp = "Anzahl der Zugriffe auf Changlogs"; break;
-	 case "Number of redirected CVSs": $tmp = "Anzahl der Zugriffe auf CVS-Verzeichnisse"; break;
-	 case "Number of redirected Screenshots": $tmp = "Anzahl der Zugriffe auf Screenshots"; break;
-	 case "Number of redirected Mailing Lists Archives": $tmp = "Anzahl der Zugriffe auf Mailing-Lists-Archive"; break;
-	 case "$GLOBALS[sys_name] Version": $tmp = "$GLOBALS[sys_name] Version"; break;
-
-	 case "High Urgency": $tmp = "Hohe Bedeutung"; break;
-	 case "Medium Urgency": $tmp = "Mittlere Bedeutung"; break;
-	 case "Low Urgency": $tmp = "Geringe Bedeutung"; break;
-	 case "Stable Version": $tmp = "Stabile Version"; break;
-	 case "Development Version": $tmp = "Entwicklungsversion"; break;
-	 case "Version Number": $tmp = "Versionsnummer"; break;
-	 case "Tarballs": $tmp = "$phrase"; break;
-	 case "Red Hat Packages": $tmp = "Red Hat Pakete"; break;
-	 case "Debian Packages": $tmp = "Debian Pakete"; break;
-	 case "Slackware Packages": $tmp = "Slackware Pakete"; break;
-	 case "Applications listed by their Importance": $tmp = "Anwendungen geordnet nach ihrer Bedeutung"; break;
-	 case "Applications listed by Number of Tarball-Downloads": $tmp = "Anwendungen geordnet nach Anzahl der Tarball-Downloads"; break;
-	 case "Applications listed by Number of Hits": $tmp = "Anwendungen geordnet nach Anzahl der Zugriffe"; break;
-	 case "Applications listed by Homepage Visits": $tmp = "Anwendungen geordnet nach Anzahl der Homepage-Besuche"; break;
-	 case "Top downloaded Red Hat Packages": $tmp = "Top der heruntergeladenen RPM-Pakete"; break;
-	 case "Top downloaded Debian Packages": $tmp = "Top der heruntergeladenen Debian-Pakete"; break;
-	 case "Top downloaded Debian Packages": $tmp = "Top der heruntergeladenen Debian-Pakete"; break;
-	 case "Application Importance listed by Sections": $tmp = "Anwendungsbedeutung geordnet nach Sektionen"; break;
-	 case "Applications listed by Sections": $tmp = "Anwendungen geordnet nach Sektionen"; break;
-	 case "Applications listed by Categories": $tmp = "Anwendungen geordnet nach Kategrien"; break;
-	 case "Applications listed by Licenses": $tmp = "Anwendungen geordnet nach Lizenzen"; break;
-	 case "Availability of downloadable Packet Formats": $tmp = "Verfügbarkeit von herunterladbaren Paketformaten"; break;
-	 case "Downloads listed by Packet Formats": $tmp = "Downloads geordnet nach Paketformaten"; break;
-	 case "Applications listed by Urgency": $tmp = "Anwendungen geordnet nach Dringlichkeit"; break;
-	 case "Downloads listed by Urgency": $tmp = "Downloads geordnet nach Dringlichkeit"; break;
-	 case "Applications listed by Version Numbers": $tmp = "Anwendungen geordnet nach Versionsnummern"; break;
-	 case "Applications listed by Licenses": $tmp = "Anwendungen geordnet nach Lizenzen"; break;
-	 case "Applications listed by Version Type": $tmp = "Anwendungen geordnet nach Versionstypen"; break;
-	 case "Downloads listed by Version Type": $tmp = "Downloads geordnet nach Versionstypen"; break;
-	 case "Application Importance listed by Licenses": $tmp = "Anwendungsbedeutung geordnet nach Lizenzen"; break;
-	 case "Application Importance listed by Developer's Email Domains": $tmp = "Anwendungsbedeutung geordnet nach E-Mail-Domainen der Entwickler"; break;
-	 case "Applications listed by Developer's Email Domain": $tmp = "Anwendungen geordnet nach E-Mail-Domainen der Entwickler"; break;
-	 case "Applications listed by Sections and Developer's Email Domain": $tmp = "Anwendungen geordnet nach Sektionen und E-Mail-Domainen der Entwickler"; break;
-	 case "Applications listed by Licenses and Developer's Email Domain": $tmp = "Anwendungen geordnet nach Lizenzen und E-Mail-Domainen der Entwickler"; break;
-
 // Errors
      case "Access denied": $tmp = "Zugriff verweigert"; break;
      case "Error": $tmp = "Fehler"; break;
@@ -549,6 +476,7 @@ switch($phrase) {
      case "Verification of Registration failed": $tmp = "Verifikation der Registrierung ist fehlgeschlagen"; break;
      case "User Change failed": $tmp = "Benutzer ändern ist fehlgeschlagen"; break;
      case "Registration of new User failed": $tmp = "Registrierung des neuen Benutzers ist fehlgeschlagen"; break;
+     case "Database error": $tmp = "Datenbankfehler"; break;
      case "Database Access failed": $tmp = "Datenbankzugriff ist fehlgeschlagen"; break;
      case "User Deletion failed": $tmp = "Benutzer Löschen ist fehlgeschlagen"; break;
      case "No more Docs for this day": $tmp = "Keine weiteren Dokumente für diesen Tag"; break;
@@ -582,7 +510,5 @@ switch($phrase) {
      default: $tmp = "$phrase"; break;
 }
 
-  //echo "---->$tmp<---";
+//echo "---->$tmp<---";
 ?>
-
-

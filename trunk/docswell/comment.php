@@ -18,6 +18,8 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
+require("./include/prepend.php3");
+
 page_open(array("sess" => "DocsWell_Session"));
 if (isset($auth) && !empty($auth->auth["perm"])) {
   @page_close();
@@ -26,8 +28,8 @@ if (isset($auth) && !empty($auth->auth["perm"])) {
                   "perm" => "DocsWell_Perm"));
 }
 
-require "header.inc";
-require "cmtlib.inc";
+require("./include/header.inc");
+require("./include/cmtlib.inc");
 
 $bx = new box("100%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
 $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
@@ -77,7 +79,7 @@ if (($config_perm_admcomment != "all") && (!isset($perm) || !$perm->have_perm($c
       }
 
       $bx->box_begin();
-      $bx->box_title($t->translate("Comment Deleted"));
+      $bx->box_title($t->translate("Comment deleted"));
       $bx->box_body_begin();
       echo $t->translate("Selected Comment was deleted");
       $bx->box_body_end();
@@ -106,6 +108,6 @@ if (($config_perm_admcomment != "all") && (!isset($perm) || !$perm->have_perm($c
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 @page_close();
 ?>

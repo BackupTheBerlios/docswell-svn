@@ -17,6 +17,8 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
+require("./include/prepend.php3");
+
 page_open(array("sess" => "DocsWell_Session"));
 if (isset($auth) && !empty($auth->auth["perm"])) {
   @page_close();
@@ -25,7 +27,7 @@ if (isset($auth) && !empty($auth->auth["perm"])) {
                   "perm" => "DocsWell_Perm"));
 }
 
-require("header.inc");
+require("./include/header.inc");
 
 $bx = new box("80%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
 $be = new box("80%",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
@@ -108,7 +110,7 @@ if (($config_perm_admtype != "all") && (!isset($perm) || !$perm->have_perm($conf
 
 
   $bx->box_begin();
-  $bx->box_title($t->translate("Document Author Administration"));
+  $bx->box_title($t->translate("Author Administration"));
   $bx->box_body_begin();
 
   if ($error) {
@@ -195,7 +197,7 @@ if (($config_perm_admtype != "all") && (!isset($perm) || !$perm->have_perm($conf
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 @page_close();
 ?>
 

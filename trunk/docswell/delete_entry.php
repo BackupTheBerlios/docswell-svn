@@ -18,11 +18,13 @@
 # the Free Software Foundation; either version 2 or later of the GPL.
 ######################################################################
 
+require("./include/prepend.php3");
+
 page_open(array("sess" => "DocsWell_Session",
                 "auth" => "DocsWell_Auth",
                 "perm" => "DocsWell_Perm"));
 
-require("header.inc");
+require("./include/header.inc");
 
 $bx = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
 ?>
@@ -146,7 +148,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 				<TD></TD>
         	            </TR>	                      
 	                      <TR>
-	                        <TD align="right" valign="top" ><B><?php echo $t->translate("Format") ?>:</B><BR><font size="1">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
+	                        <TD align="right" valign="top" ><B><?php echo $t->translate("Format") ?>:</B><BR><font class="small">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
 	                        <TD>
 	                          <select name="format[]" size="5" multiple>
 	                    <?php //############################# Dokumentformate holen ##################################
@@ -194,7 +196,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 				</TD>
 	                    </TR>
 	                    <TR>
-	                        <TD align=right><B><?php echo $t->translate("Author") ?>:</B><BR><font size="1">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
+	                        <TD align=right><B><?php echo $t->translate("Author") ?>:</B><BR><font class="small">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
 	                      	<TD>
 	                          <select name="mautoren[]" size="5" multiple>
 	                    <?php //############################# Autoren holen ##################################
@@ -325,9 +327,6 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin"))) {
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 @page_close();
 ?>
-
-
-
