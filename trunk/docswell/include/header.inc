@@ -39,7 +39,8 @@ $db = new DB_DocsWell;
    <meta http-equiv="expires" content="0">
    <meta http-equiv="author" content"Christian Schmidt (schmidt@mallux.de), Lutz Henckel, Florian Dorrer">
    <title><?php echo $sys_name;?> - <?php echo $t->translate($sys_title);?></title>
-<link rel="stylesheet" type="text/css" href="style.php">
+<link rel="STYLESHEET" type="text/css" href="style.php">
+<link rel="SHORTCUT ICON" href="favicon.ico">
 
 <SCRIPT LANGUAGE="JavaScript"> function addNetscapePanel() { 
       if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) 

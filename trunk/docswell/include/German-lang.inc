@@ -96,7 +96,7 @@ switch($phrase) {
 
 // Docs update
      case "Comment": $tmp = "Kommentar"; break;
-     case "Review": $tmp = "Überprüfen"; break;
+     case "Review": $tmp = "Review"; break;
      case "Update": $tmp = "Aktualisieren"; break;
      case "Delete": $tmp = "Entfernen"; break;
      case "Undelete": $tmp = "Wiederherstellen"; break;
@@ -488,15 +488,11 @@ switch($phrase) {
 // Document types
      case "Document Types": $tmp = "Dokumenttypen"; break;
      case "Journal": $tmp = "Journal"; break;
-     case "Journals": $tmp = "Journale"; break;
      case "Magazine": $tmp = "Magazin"; break;
-     case "Magazines": $tmp = "Magazine"; break;
      case "Guide": $tmp = "Handbuch"; break;
-     case "Guides": $tmp = "Handbücher"; break;
      case "Column": $tmp = "Kolumne"; break;
-     case "Columns": $tmp = "Kolumnen"; break;
      case "Book": $tmp = "Buch"; break;
-     case "Books": $tmp = "Bücher"; break;
+     case "Study": $tmp = "Studie"; break;
      case "more": $tmp = "mehr"; break;
 
 // Categories

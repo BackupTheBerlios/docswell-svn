@@ -23,7 +23,7 @@ require("./include/prepend.php3");
 
 page_open(array("sess" => "DocsWell_Session"));
 if (isset($auth) && !empty($auth->auth["perm"])) {
-  @page_close();
+  page_close();
   page_open(array("sess" => "DocsWell_Session",
                   "auth" => "DocsWell_Auth",
                   "perm" => "DocsWell_Perm"));

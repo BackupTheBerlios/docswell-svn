@@ -53,6 +53,11 @@ $bx = new box("95%",$th_box_frame_color,0,$th_box_title_bgcolor,$th_box_title_fo
 <p>&nbsp;
 <?php
 $bx->box_begin();
+$bx->box_body_begin();
+echo "<a href=\"$sys_url_title\" target=\"_content\"><img src=\"$sys_logo_small_image\" border=\"0\" height=\"$sys_logo_small_heigth\" width=\"$sys_logo_small_width\" ALT=\"$sys_logo_small_alt\"></a>";
+$bx->box_body_end();
+$bx->box_end();
+$bx->box_begin();
 $bx->box_title("<font size=\"1\">".$t->translate("Recent Docs")."</font>");
 $db->query("SELECT * FROM DOKUMENT WHERE STATUS='A' ORDER BY AENDERUNGSDATUM DESC, ID DESC limit 20");
 $i=0;

@@ -51,8 +51,7 @@ $msg = "[ ";
     $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => $ltr."%"))."\">$ltr</a>&nbsp;| ";
   }
 
-  $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a>&nbsp;| ";
-  $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => ""))."\">".$t->translate("Unknown")."</a>&nbsp;]";
+  $msg .= "<a href=\"".$sess->url("developers.php").$sess->add_query(array("by" => "%"))."\">".$t->translate("All")."</a>&nbsp;]";
 
 $bs->box_strip($msg);
 $columns = "ID, VORNAME, NACHNAME, EMAIL";

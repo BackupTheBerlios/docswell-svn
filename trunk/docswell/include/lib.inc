@@ -141,7 +141,7 @@ function docfull($query) {
 	    if ($counter == $anz) {
 		  $dbKat->query("SELECT * FROM KATEGORIE WHERE NAME='$onestep'");
 		  $dbKat->next_record();
-		  $cat_path .= " :: <a href=\"".$sess->url("docbycat.php").$sess->add_query(array("category" => $dbKat->f("ID")))."\">".$t->translate($onestep)."</a>";
+		  $cat_path .= " :: <a href=\"".$sess->url("docbycat.php").$sess->add_query(array("category" => $db->f("KATEGORIE")))."\">".$t->translate($onestep)."</a>";
 	    } else 
 		$cat_path .= " :: ".$t->translate($onestep)." ";
 	  }
@@ -347,7 +347,7 @@ function doccat($query,$title,$iter, $what) {
       if ($counter == $anz) {
  	$dbKat->query("SELECT * FROM KATEGORIE WHERE NAME='$onestep'");
 	$dbKat->next_record();
-	$cat_path .= " :: <a href=\"".$sess->url("docbycat.php").$sess->add_query(array("category" => $dbKat->f("ID")))."\">".$t->translate($onestep)."</a>";
+	$cat_path .= " :: <a href=\"".$sess->url("docbycat.php").$sess->add_query(array("category" => $db->f("KATID")))."\">".$t->translate($onestep)."</a>";
       } else 
 	$cat_path .= " :: ".$t->translate($onestep)." ";
     }
@@ -379,7 +379,7 @@ function doccat($query,$title,$iter, $what) {
   	$bx->box_body_begin();
   	echo "<table border=0 align=center cellspacing=0 cellpadding=3 width=100%>\n";  
     }
-    echo "<tr><td align=right valign=top width=4%><b>$i</b></td><td width=96%><b><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("id")))."\">".$db->f("titel")."</a>";
+    echo "<tr><td align=right valign=top width=4%><b>$i</b></td><td width=96%><b><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("id")))."\">".$db->f("titel")."</a></b>";
 
   //Autoren besorgen
   $dbAut = new DB_DocsWell;
@@ -389,7 +389,7 @@ function doccat($query,$title,$iter, $what) {
   $anz = $dbAut->num_rows();
 
   if ($anz > 0) { //Autoren ausgeben
-	echo " <br>".$t->translate("by")." ";
+	echo " <br><b>".$t->translate("by")." ";
   	$counter = 0; 
   	while ($dbAut->next_record()) {
 		$counter++;
@@ -502,7 +502,7 @@ function docd() {
   $bx->box_title_begin();
   echo "<table border=0 cellspacing=0 cellpadding=0 width=100%>\n";
   echo "<tr valign=bottom>";
-  echo "<td width=30%><b><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("id")))."\">".$db->f("titel")." </a> </b></td>\n";
+  echo "<td width=30%><b><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("id")))."\">".$db->f("titel")."</a></b></td>\n";
   echo "<td width=70% align=right>\n";
 
   echo "&nbsp;&nbsp;<b><a href=\"".$sess->url("docbytyp.php").$sess->add_query(array("typ" => $db->f("DocType")))."\">".$t->translate($db->f("TypName"))."</a></b>\n";
@@ -524,22 +524,30 @@ function docd() {
 #    } else {
 #        $num = "<b>[".$db2_count."]</b>";
 #    }
-#  echo "&nbsp;&nbsp;<a href=\"".$sess->url("cmtapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/txt.png\" border=0 alt=\"".$t->translate("Comments")."\"></a> $num</a>\n";
+#  echo " <a href=\"".$sess->url("cmtapp.php").$sess->add_query(array("id" => $db->f("appid")))."\"><img src=\"images/txt.png\" border=0 alt=\"".$t->translate("Comments")."\"></a> $num</a>\n";
 
-  echo "&nbsp;&nbsp;<a href=\"".$sess->url("docbycat.php").$sess->add_query(array("category" => $db->f("KatID")))."\"><b>".$t->translate($db->f("KategorieName"))."</b></a>\n";
+  echo "<br><a href=\"".$sess->url("docbycat.php").$sess->add_query(array("category" => $db->f("KatID")))."\"><b>".$t->translate($db->f("KategorieName"))."</b></a>\n";
+
+  // Sprache besorgen
+  $db2->query("SELECT * FROM SPRACHEDEF WHERE ID='".$db->f("sprache")."'");
+  if ($db2->next_record())
+    echo " <span class=\"small\">".$db2->f("SPRACHE")."</span>\n";
+
   echo "</td></tr>\n";
   echo "</table>\n";
   $bx->box_title_end();
   $bx->box_body_begin();
   $timestamp = timestr(mktimestampdw($db->f("aendatum")));
+
   //Autoren besorgen
   $db3 = new DB_DocsWell;
   $Sql = "SELECT a.vorname, a.nachname, a.email FROM AUTOR a, AUTOR_DOKUMENT ad WHERE ad.autor_id=a.id AND ad.dokument_id=".$db->f("id");
   //echo $Sql;
   $db3->query($Sql);
   $anz = $db3->num_rows();
+  echo "<b class=\"small\">";
   if ($anz > 0) { //Autoren ausgeben
-  	echo "<b class=\"small\">".$t->translate("by")." ";
+  	echo $t->translate("by")." ";
   	$counter = 0; 
   	while ($db3->next_record()) {
 		$counter++;
@@ -594,7 +602,7 @@ function doctyp() {
 
       $db->query("SELECT ID,TITEL, AENDERUNGSDATUM FROM DOKUMENT WHERE TYP='$typid' AND STATUS='A' ORDER BY AENDERUNGSDATUM DESC, ID DESC LIMIT 10");
       while($db->next_record()) {
-        echo "<li><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("ID")))."\">".$db->f("TITEL")."</a> <nobr class=\"small\">[".strftime("%a, %e. %b, %H:%M %Z", mktimestampdw($db->f("AENDERUNGSDATUM")))."]</nobr></li>\n";
+        echo "<span class=\"small\"><li><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("ID")))."\">".$db->f("TITEL")."</a> [".strftime("%a, %e. %b, %H:%M %Z", mktimestampdw($db->f("AENDERUNGSDATUM")))."]</li></span>\n";
       }
       echo "<p class=\"small\"><b><a href=\"".$sess->url("docbytyp.php").$sess->add_query(array("typ" => "$typid"))."\">".$t->translate("more")."...</a></b>";
       $bx->box_body_end();

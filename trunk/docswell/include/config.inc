@@ -29,6 +29,10 @@
 # sys_logo_alt      Alternative text for your site's image
 # sys_logo_width    Width of the image of your site
 # sys_logo_heigth   Heigth of the image of your site
+# sys_logo_small_image	Small image of your sitebar
+# sys_logo_small_alt	Alternative text for your sitebar's image
+# sys_logo_small_width	Width of the image of your sitebar
+# sys_logo_small_heigth	Heigth of the image of your sitebar
 ######################################################################
 
 $sys_name = "DocsWell";
@@ -39,6 +43,10 @@ $sys_logo_image = "images/berliOS_logo.png";
 $sys_logo_alt = "BerliOS";
 $sys_logo_width = "238";
 $sys_logo_heigth = "61";
+$sys_logo_small_image = "images/berliOS_small_logo.png";
+$sys_logo_small_alt = $sys_logo_alt;
+$sys_logo_small_width = "124";
+$sys_logo_small_heigth = "32";
 
 ######################################################################
 # Organisation Config
@@ -121,7 +129,7 @@ $th_strip_body_font_color = "";
 #
 ######################################################################
 
-$config_show_docsperpage = "10";
+$config_show_docsperpage = "15";
 
 ######################################################################
 # Email Notification

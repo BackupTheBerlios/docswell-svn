@@ -336,7 +336,7 @@ if ($perm->have_perm("user_pending")) {
                       <TR>
                         <TD align="right" valign="top"><B><?php echo $t->translate("Format") ?>:</B><BR><font size="1">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
                         <TD>
-                          <select name="format[]" size="5" multiple>
+                          <select name="format[]" size="10" multiple>
                     <?php //############################# Dokumentformate holen ##################################
 				
                     		$db->query ("SELECT * FROM FORMATDEF ORDER BY NAME ASC");

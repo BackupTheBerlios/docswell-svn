@@ -352,7 +352,10 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin")) || ($perm->have_
                     <TR>
                         <TD align="right"><B><?php echo $db->f("NAME"); ?></B></TD>
                         <TD colspan="2"><input type="text" name="links[]" size="40" 
-				 	 value="<?php if ($links[$i]): echo $links[$i]; elseif (($ID) && ($db2->f("LINK"))) : echo $db2->f("LINK"); else: echo "http://"; endif; ?>">
+				 	 value="<?php if ($links[$i]){  echo $links[$i]; $tlink = $links[$i]; } elseif (($ID) && ($db2->f("LINK"))) { echo $db2->f("LINK"); $tlink = $db2->f("LINK"); } else echo "http://"; ?>">
+				<?php if ($tlink) 
+					echo "<a href=\"$tlink\" target=\"_blank\">Check</a><br>";
+				?>
 				<input type="hidden" name="format[]" value="<?php echo $format[$i]; ?>"></TD>
                    </TR>
 		   <?php } if ($error_ar2) { ?>
@@ -482,7 +485,7 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin")) || ($perm->have_
 	                      <TR>
 	                        <TD align="right" valign="top"><B><?php echo $t->translate("Format") ?>:</B><BR><font size="1">(<?php echo $t->translate("multiselection possible") ?>)</font></TD>
 	                        <TD>
-	                          <select name="format[]" size="5" multiple>
+	                          <select name="format[]" size="10" multiple>
 	                    <?php //############################# Dokumentformate holen ##################################
 	                    		$db->query("SELECT * FROM FORMATDEF ORDER BY NAME ASC");
 					  $db2 = new DB_DocsWell;
