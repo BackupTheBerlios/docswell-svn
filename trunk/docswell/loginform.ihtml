@@ -3,7 +3,7 @@
 global $la;
 global $username;
 
-require("header.inc");  
+require("./include/header.inc");  
                                                      
 $bx = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_body_font_color,$th_box_body_align);
 $be = new box("",$th_box_frame_color,$th_box_frame_width,$th_box_title_bgcolor,$th_box_title_font_color,$th_box_title_align,$th_box_body_bgcolor,$th_box_error_font_color,$th_box_body_align);
@@ -67,7 +67,7 @@ if ($db->num_rows() == 1) {
 <!-- end content -->
 
 <?php
-require("footer.inc");
+require("./include/footer.inc");
 ?>
 
 <script language="JavaScript">
