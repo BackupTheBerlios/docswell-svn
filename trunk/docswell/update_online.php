@@ -4,7 +4,7 @@
 # DocsWell: Documents Announcement & Retrieval System
 # ===================================================================
 #
-# Copyright (c) 2001 by
+# Copyright (c) 2001, 2002 by
 #                Christian Schmidt (schmidt@mallux.de)
 #
 # BerliOS DocsWell: http://docswell.berlios.de
@@ -146,8 +146,8 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin")) || ($perm->have_
 
 			//echo $mnew_img;
 			if (($img_do == 2) && ($new_filename)) { //Bild löschen
-				if (file_exists (dirname($SCRIPT_FILENAME)."/images_docs/".$new_filename)) 
-					unlink (dirname($SCRIPT_FILENAME)."/images_docs/".$new_filename);
+				//if (file_exists (dirname($SCRIPT_FILENAME)."/images_docs/".$new_filename)) 
+				//	unlink (dirname($SCRIPT_FILENAME)."/images_docs/".$new_filename);
 				unset ($new_filename);	
 			} elseif (($img_do ==2) && ($vorhandenesbild)) {
 				unset ($vorhandenesbild);
@@ -732,3 +732,4 @@ if (($perm->have_perm("editor")) || ($perm->have_perm("admin")) || ($perm->have_
 require("./include/footer.inc");
 @page_close();
 ?>
+
