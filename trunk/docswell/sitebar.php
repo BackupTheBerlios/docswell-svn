@@ -63,7 +63,8 @@ $db->query("SELECT * FROM DOKUMENT WHERE STATUS='A' ORDER BY AENDERUNGSDATUM DES
 $i=0;
 $bx->box_body_begin();
 while($db->next_record()) {
-  echo "<li><font size=\"1\"><a href=\"".$sys_url."docbyid.php?id=".$db->f("ID")."\" target=\"_content\">".$db->f("TITEL")."</a></font></li>\n";
+  echo "<div class=newsind>&#149;&nbsp;";
+  echo "<a href=\"".$sys_url."docbyid.php?id=".$db->f("ID")."\" target=\"_content\">".$db->f("TITEL")."</a></div>\n";
   $i++;
 }
 echo "<p><b><font size=\"1\"><a href=\"".$sys_url."\" target=\"_content\">more...</a></font></b>\n";
