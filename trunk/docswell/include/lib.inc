@@ -602,7 +602,8 @@ function doctyp() {
 
       $db->query("SELECT ID,TITEL, AENDERUNGSDATUM FROM DOKUMENT WHERE TYP='$typid' AND STATUS='A' ORDER BY AENDERUNGSDATUM DESC, ID DESC LIMIT 10");
       while($db->next_record()) {
-        echo "<span class=\"small\"><li><a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("ID")))."\">".$db->f("TITEL")."</a> [".strftime("%a, %e. %b, %H:%M %Z", mktimestampdw($db->f("AENDERUNGSDATUM")))."]</li></span>\n";
+        echo "<div class=newsind>&#149;&nbsp;";
+        echo "<a href=\"".$sess->url("docbyid.php").$sess->add_query(array("id" => $db->f("ID")))."\">".$db->f("TITEL")."</a> [".strftime("%a, %e. %b, %H:%M %Z", mktimestampdw($db->f("AENDERUNGSDATUM")))."]</div>\n";
       }
       echo "<p class=\"small\"><b><a href=\"".$sess->url("docbytyp.php").$sess->add_query(array("typ" => "$typid"))."\">".$t->translate("more")."...</a></b>";
       $bx->box_body_end();
