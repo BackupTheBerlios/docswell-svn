@@ -1,13 +1,13 @@
 <?php
 
 ######################################################################
-# DocsWell: Documents Announcement & Retrieval System
+# DevCounter: Open Source Developer Counter
 # ===================================================================
 #
 # Copyright (c) 2002 by
-#                Lutz Henckel (lutz.henckel@fokus.gmd.de)
+#                Lutz Henckel (lutz.henckel@fokus.fhg.de)
 #
-# BerliOS DocsWell: http://docswell.berlios.de
+# BerliOS DevCounter: http://devcounter.berlios.de
 # BerliOS - The OpenSource Mediator: http://www.berlios.de
 #
 # Install system and check configuration
@@ -15,10 +15,16 @@
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 or later of the GPL.
+#
+# $Id: install.php,v 1.2 2002/10/01 11:09:24 helix Exp $
+#
 ######################################################################  
 
 require("./include/config.inc");
+
 $dbconfile = "./include/local.inc";
+$prependfile = "./include/prepend.php3";
+$phplibdefault = "/usr/share/php/phplib/";
 
 function status($foo) {
     if ($foo) {
@@ -78,6 +84,24 @@ case "check_php":
 	require("./install/check_php.php");
 	break;
 
+/* Set path to PHPlib */
+
+case "set_phplib":
+	require("./install/header.inc");
+	if (!isset($op)) {
+		$op = "";
+	}
+	switch ($op) {
+	case "set":
+		require("./install/set_phplib_set.php");
+		break;
+	case "":
+	default:
+		require("./install/set_phplib.php");
+		break;
+	}
+	break;
+
 /* Check PHPlib */
 
 case "check_phplib":
@@ -85,11 +109,11 @@ case "check_phplib":
 	require("./install/check_phplib.php");
 	break;
 
-/* Check DocsWell Session */
+/* Check DevCounter Session */
 
 case 'check_session':
 	require("./include/prepend.php3");
-	page_open(array('sess' => 'DocsWell_Session'));
+	require("./include/prepend.php3"); page_open(array('sess' => 'DevCounter_Session'));
 	require("./install/header.inc");
 	require("./install/check_session.php");
 	page_close();
@@ -147,10 +171,20 @@ default:
 	$mode = fileperms($dbconfile);
 	if ($mode) {
 		if (($mode & 00666) == 00666) {
-			echo "<p><font color=\"green\">Database configuration file ./include/local.inc has correct ".get_perms($mode)." permissions.\n";
+			echo "<p><font color=\"green\">Database configuration file $dbconfile has correct ".get_perms($mode)." permissions.\n";
 			echo "<br>Go ahead.\n";
 		} else {
-			echo "<p><font color=\"red\">Database configuration file ./include/local.inc has incorrect ".get_perms($mode)." permissions.\n";
+			echo "<p><font color=\"red\">Database configuration file $dbconfile has incorrect ".get_perms($mode)." permissions.\n";
+			echo "<br>Please change permissions to rw-rw-rw and try again!</font>\n";
+		}
+	}
+	$mode = fileperms($prependfile);
+	if ($mode) {
+		if (($mode & 00666) == 00666) {
+			echo "<p><font color=\"green\">PHPlib prepend file $prependfile has correct ".get_perms($mode)." permissions.\n";
+			echo "<br>Go ahead.\n";
+		} else {
+			echo "<p><font color=\"red\">PHPlib prepend file $prependfile has incorrect ".get_perms($mode)." permissions.\n";
 			echo "<br>Please change permissions to rw-rw-rw and try again!</font>\n";
 		}
 	}
@@ -158,6 +192,7 @@ default:
 <ol>
 <li><a href="install.php?action=view_phpinfo">View PHP configuration</a>
 <li><a href="install.php?action=check_php">Check PHP</a>
+<li><a href="install.php?action=set_phplib">Set path to PHPlib</a>
 <li><a href="install.php?action=check_phplib">Check PHPlib</a>
 <li><a href="install.php?action=create_dbusr">Create <?php echo $sys_name?> Database User</a>
 <li><a href="install.php?action=create_db">Create <?php echo $sys_name?> Database</a>
