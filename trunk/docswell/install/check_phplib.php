@@ -23,4 +23,4 @@
         	<?php endif; ?>
         <?php } ?>
 	</ul>
-	<p>[ <a href="install.php">Go back</a> ] [ <a href="install.php?action=create_dbusr">Next</a> ]
+	<p>[ <a href="install.php">Go back</a> ] [ <a href="install.php?action=set_url">Next</a> ]
