@@ -20,7 +20,7 @@
 
 require "./include/prepend.php3";
 
-header("Content-Type: text/plain");
+header("Content-Type: text/xml");
 
 // Disabling cache
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
@@ -54,7 +54,7 @@ $db->query("SELECT DOKUMENT.TITEL AS titel, SPRACHEDEF.SPRACHE AS sprache, DOKUM
 $i=0;
 while($db->next_record()) {
   echo "  <item>\n";
-  echo "    <title>".$db->f("titel")." (".$db->f("sprache").")</title>\n";
+  echo "    <title>".htmlspecialchars($db->f("titel"))." (".$db->f("sprache").")</title>\n";
   echo "    <link>".$sys_url."docbyid.php?id=".$db->f("id")."</link>\n";
 //  echo "    <description>".wrap($db->f("beschreibung"))."</description>\n";
   echo "  </item>\n";
