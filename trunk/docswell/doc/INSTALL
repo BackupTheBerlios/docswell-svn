@@ -1,36 +1,89 @@
-Fast installation guide
+Fast Installation Guide
+=======================
 
 You need to have a webserver (we have tested the system with Apache),
-PHP3 or PHP4, PHPLib and MySQL installed in your system.
+PHP3 or PHP4, PHPLib and MySQL installed on your system.
 
-* user$ mysql -h host -u database_superuser -p
-  (insert superuser_password)
-* mysql> USE mysql;
-* mysql> INSERT INTO user VALUES ( 'host', 'operator', PASSWORD('operator_password'), 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
-* mysql> FLUSH PRIVILEGES;
-* mysql> CREATE DATABASE docswell;
-* mysql> exit;
-* user$ tar -zxvf docswell-x.x.tar.gz
-* user$ mysql -h host -u operator -p < docswell/sql/dw.sql
-  (insert the operator_password)
-* user$ vi docswell/include/local.inc
-  (insert the correct database parameters; please, keep docswell as the database name)
+Two installation and configuration methods are provided:
+
+Using Installation Script
+-------------------------
+
+1. Go to the directory where your HTML files resides
+   and untar the DocsWell archive:
+
+   user$ cd /usr/local/httpd/htdocs
+   user$ tar -zxvf docswell-x.x.x.tar.gz
+
+2. Execute the installation script and follow the
+   instruction.
+
+   http://yourserver/docswell-x.x.x/install.php
+
+
+Manual Installation
+-------------------
+
+1. Go to the directory where your HTML files resides
+   and untar the DocsWell archive:
+
+   user$ cd /usr/local/httpd/htdocs
+   user$ tar -zxvf docswell-x.x.x.tar.gz
+
+2. Set up the database user account for DocsWell
+   and create the DocsWell database:
+
+   user$ mysql -h host -u database_superuser -p
+   (insert superuser_password)
+   mysql> USE mysql;
+   mysql> INSERT INTO user VALUES ( 'host', 'operator', PASSWORD('operator_password'), 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
+   mysql> FLUSH PRIVILEGES;
+   mysql> CREATE DATABASE docswell;
+   mysql> exit;
+
+3. Go to the DocsWell directory and
+   create DocsWell tables and defaults:
+
+   user$ cd /usr/local/httpd/htdocs/docswell-x.x.x
+   user$ mysql -h host -u operator -p < sql/tables.sql
+   (insert db_password)
+   user$ mysql -h host -u operator -p < sql/defaults.sql
+   (insert db_password)
+
+4. Set database parameters in docswell-x.x.x/include/local.inc;
+   keep docswell as the database name
+
+   user$ cd /usr/local/httpd/htdocs/docswell-x.x.x
+   user$ vi include/local.inc
 
    var $Host     = "host";
    var $Database = "docswell";
    var $User     = "operator";
    var $Password = "password";
 
+5. Set path to PHPLib directory in docswell-x.x.x/include/prepend.php3:
+
+   user$ cd /usr/local/httpd/htdocs/docswell-x.x.x
+   user$ vi include/prepend.php3
+
+   $_PHPLIB["libdir"] = "/usr/share/php/phplib/";
+
 Ok, that's it. You've finished installing and configuring
-DocsWell. Start your browser and visit
-http://yourserver/docswell/index.php3. As you'll see, DocsWell
-comes with some inserted example documents. You can
-delete or modify them by entering as an administrator. To do so, login
-as the default administrator with user,editor,admin permissions.
-At the prompt use the following ID to login (case sensitive):
+DocsWell. Start your browser and visit:
 
-    Username: oldfish
-    Password: oldfish
+   http://yourserver/docswell-x.x.x/index.php
 
-Vert important: Be sure of immediately changing the login and password by
-clicking on the User Admin link. You'll notice this is quite easy to do ;-)
+As you'll see, DocsWell comes only with the administrator.
+You can modify your profile. To do so, login as the default
+administrator with user,editor,admin permissions.
+At the prompt use the following ID to login
+(case sensitive):
+
+    Username: admin
+    Password: admin
+
+Very important: Be sure that you immediately change the username and
+password by clicking on the User Admin link. You'll notice this is
+quite easy to do ;-)
+
+Have fun!
