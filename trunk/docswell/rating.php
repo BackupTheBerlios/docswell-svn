@@ -3,8 +3,8 @@
 header("Cache-Control: no-cache, must-revalidate");     // HTTP/1.1
 header("Pragma: no-cache");                             // HTTP/1.0
 
-require "config.inc";
-require "lib.inc";
+require("./include/config.inc");
+require("./include/lib.inc");
 
 $db = new DB_DocsWell;
 
